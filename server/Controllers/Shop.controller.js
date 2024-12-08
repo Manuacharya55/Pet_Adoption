@@ -1,11 +1,11 @@
-import { AsyncHandler } from "../Utils/AsyncHandler.js";
+import { asyncHandler } from "../Utils/AsyncHandler.js";
 
-export const getAllShops = AsyncHandler(async (req, res) => {});
+export const getAllShops = asyncHandler(async (req, res) => {});
 
-export const addShop = AsyncHandler(async (req, res) => {});
+export const addShop = asyncHandler(async (req, res) => {});
 
-export const getSingleShop = AsyncHandler(async (req, res) => {});
+export const getSingleShop = asyncHandler(async (req, res) => {});
 
-export const editShop = AsyncHandler(async (req, res) => {});
+export const editShop = asyncHandler(async (req, res) => {});
 
-export const deleteShop = AsyncHandler(async (req, res) => {});
+export const deleteShop = asyncHandler(async (req, res) => {});

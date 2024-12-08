@@ -19,7 +19,9 @@ const ShopSchema = new Schema(
       required: true,
     },
   },
-  { timestamps }
+  {
+    timestamps: true
+}
 );
 
 export const Shop = model("Shop", ShopSchema);

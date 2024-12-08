@@ -50,7 +50,9 @@ const PetSchema = new Schema(
       required: true,
     },
   },
-  { timestamps }
+  {
+    timestamps: true
+}
 );
 
 export const Pet = model("Pet", PetSchema);

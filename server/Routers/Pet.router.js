@@ -8,7 +8,7 @@ import {
 } from "../Controllers/Pet.controller.js";
 const router = express.Router();
 
-router.route("/pets").get(getAllPets).post(addPet);
-router.route("/pets/:id").get(getSinglePet).patch(editPet).delete(deletePet);
+router.route("/").get(getAllPets).post(addPet);
+router.route("/:id").get(getSinglePet).patch(editPet).delete(deletePet);
 
 export default router;

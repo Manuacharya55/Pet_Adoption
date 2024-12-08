@@ -23,7 +23,9 @@ const UserSchema = new Schema(
       default: "user",
     },
   },
-  { timestamps }
+  {
+    timestamps: true,
+  }
 );
 
 UserSchema.pre("save", async function (next) {
@@ -35,7 +37,7 @@ UserSchema.pre("save", async function (next) {
 
 UserSchema.methods.generateToken = function () {
   const token = jwt.sign(
-    { _id: this._id, email: this.email, isAdmin: this.isAdmin },
+    { _id: this._id, email: this.email, role: this.role },
     process.env.JWT_SECRET
   );
   return token;

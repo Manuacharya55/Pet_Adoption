@@ -16,7 +16,9 @@ const PetSchema = new Schema(
       default: "pending",
     },
   },
-  { timestamps }
+  {
+    timestamps: true
+}
 );
 
 export const Adoption = model("Pet", PetSchema);

@@ -1,9 +1,10 @@
-import express from "express";
-import { register, login, profile } from "../Controllers/Auth.controller.js";
-const router = express.Router();
+import {Router} from "express";
+import { registerUser, login, profile } from "../Controllers/Auth.controller.js";
+import { verifyJWT } from "../Middlewares/Auth.middleware.js";
+const router = Router();
 
-router.route("/auth/register").post(register);
-router.route("/auth/login").post(login);
-router.route("/auth/profile").get(profile);
+router.route("/profile").get(verifyJWT,profile);
+router.route("/register").post(registerUser);
+router.route("/login").post(login);
 
 export default router;
