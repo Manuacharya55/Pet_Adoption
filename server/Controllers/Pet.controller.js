@@ -39,7 +39,7 @@ export const addPet = asyncHandler(async (req, res) => {
 });
 
 export const getSinglePet = asyncHandler(async (req, res) => {
-    const { id } = req.params;
+  const { id } = req.params;
   const pet = await Pet.findById(id);
   if (!pet) {
     throw new ApiError(404, "Pet not found");
@@ -47,6 +47,52 @@ export const getSinglePet = asyncHandler(async (req, res) => {
   res.send(new ApiSuccess(200, "Data Successfully fetched", pet));
 });
 
-export const editPet = asyncHandler(async (req, res) => {});
+export const editPet = asyncHandler(async (req, res) => {
+  const { name, age, breed, species, description, price } = req.body;
+  const { _id } = req.shop;
+  const { id } = req.params;
 
-export const deletePet = asyncHandler(async (req, res) => {});
+  if (!name || !age || !breed || !species || !description || !price) {
+    throw new ApiError(400, "All fields are required");
+  }
+
+  const existingShop = await Shop.findById(_id);
+  if (!existingShop) {
+    throw new ApiError(400, "No shop found");
+  }
+  const pet = await Pet.findByIdAndUpdate(
+    id,
+    {
+      name,
+      age,
+      breed,
+      species,
+      description,
+      price,
+      shopId: _id,
+    },
+    { new: true }
+  );
+
+  if (!pet) {
+    throw new ApiError(404, "Pet not found");
+  }
+  res.send(new ApiSuccess(201, "Pet udpated successfully", pet));
+});
+
+export const deletePet = asyncHandler(async (req, res) => {
+  const { _id } = req.shop;
+  const { id } = req.params;
+
+  const existingShop = await Shop.findById(_id);
+  if (!existingShop) {
+    throw new ApiError(400, "No shop found");
+  }
+  console.log("Delete");
+  const pet = await Pet.findByIdAndDelete(id);
+
+  if (!pet) {
+    throw new ApiError(404, "Pet not found");
+  }
+  res.send(new ApiSuccess(201, "Pet deleted successfully", pet));
+});

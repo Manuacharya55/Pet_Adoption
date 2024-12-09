@@ -25,17 +25,17 @@ export const login = asyncHandler(async (req, res) => {
     if(!email || !password) {
         throw new ApiError(400,"Required fields are empty");
     }
-    const existingUser = await User.findOne({ email});
-    if(!existingUser){
+    const user = await User.findOne({ email});
+    if(!user){
         throw new ApiError(400,"User not found");
     }
-    const isPasswordCorrect = await existingUser.isPasswordCorrect(password);
+    const isPasswordCorrect = await user.isPasswordCorrect(password);
     if(!isPasswordCorrect){
         throw new ApiError(401,"Invalid credentials");
     }
-    const token = existingUser.generateToken();
+    const token = user.generateToken();
 
-    res.send(new ApiSuccess(200,"Logged In Successfully",token))
+    res.send(new ApiSuccess(200,"Logged In Successfully",{token,user}))
 });
 
 export const profile = asyncHandler(async (req, res) => {

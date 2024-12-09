@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 const app = express();
 dotenv.config();
 
@@ -10,6 +11,7 @@ import AdoptionRouter from "./Routers/Adoption.router.js";
 import connectDB from "./Database/index.js";
 
 app.use(express.json());
+app.use(cors());
 const PORT = process.env.PORT || 4000;
 
 connectDB()

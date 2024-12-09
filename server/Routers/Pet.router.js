@@ -9,7 +9,14 @@ import {
 import { verifyJWT, verifyShopKeeper } from "../Middlewares/Auth.middleware.js";
 const router = express.Router();
 
-router.route("/").get(verifyJWT,getAllPets).post(verifyJWT,verifyShopKeeper,addPet);
-router.route("/:id").get(verifyJWT,getSinglePet).patch(verifyJWT,verifyShopKeeper,editPet).delete(verifyJWT,verifyShopKeeper,addPet,deletePet);
+router
+  .route("/")
+  .get(verifyJWT, getAllPets)
+  .post(verifyJWT, verifyShopKeeper, addPet);
+router
+  .route("/:id")
+  .get(verifyJWT, getSinglePet)
+  .patch(verifyJWT, verifyShopKeeper, editPet)
+  .delete(verifyJWT, verifyShopKeeper, deletePet);
 
 export default router;
