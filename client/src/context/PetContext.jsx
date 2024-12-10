@@ -1,28 +1,15 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AdoptionContext = createContext(null);
 
 export const AdoptionProvider = ({ children }) => {
-  const [user, setUser] = useState({
-    token: "",
-    role: "",
-  });
-
-  const [isLoggedin,setIsLoggedin] = useState(false);
-  const fetchUserToken = () => {
-    const token = localStorage.getItem("token");
-    const role = localStorage.getItem("role");
-
-    if (token && role) {
-      setUser({ token, role });
-      setIsLoggedin(true);
-    }
-  };
+  const [user, setUser] = useState(() => ({
+    token: localStorage.getItem("token") || "",
+    role: localStorage.getItem("role") || "",
+  }));
+  const [isLoggedin, setIsLoggedin] = useState(() =>
+    Boolean(localStorage.getItem("token") && localStorage.getItem("role"))
+  );
 
   const setUserToken = (token, role) => {
     localStorage.setItem("token", token);
@@ -31,12 +18,17 @@ export const AdoptionProvider = ({ children }) => {
     setIsLoggedin(true);
   };
 
-  useEffect(() => {
-    fetchUserToken();
-  }, []);
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    setUser({ token: "", role: "" });
+    setIsLoggedin(false);
+  };
 
   return (
-    <AdoptionContext.Provider value={{ user, fetchUserToken, setUserToken,isLoggedin }}>
+    <AdoptionContext.Provider
+      value={{ user, setUserToken, isLoggedin, logout }}
+    >
       {children}
     </AdoptionContext.Provider>
   );

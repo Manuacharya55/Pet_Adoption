@@ -1,13 +1,15 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const Card = () => {
+const Card = ({data}) => {
+  const {img,name,link} = data
   return (
     <div className="card">
-        <img src="https://img.freepik.com/free-photo/3d-illustration-showcasing-friendship-cats-dogs_23-2151483371.jpg?uid=R95440870&ga=GA1.1.1474846998.1733319499&semt=ais_hybrid" alt="" />
+        <img src={img} alt="" />
 
         <div className="details">
-            <NavLink to={"/"}>More Details</NavLink>
+          <h3>{name}</h3>
+            <NavLink to={link}>More Details</NavLink>
         </div>
     </div>
   )

@@ -13,6 +13,7 @@ import connectDB from "./Database/index.js";
 app.use(express.json());
 app.use(cors());
 const PORT = process.env.PORT || 4000;
+app.use(express.static("public"))
 
 connectDB()
   .then(() => {

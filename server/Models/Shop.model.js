@@ -18,10 +18,14 @@ const ShopSchema = new Schema(
       type: Number,
       required: true,
     },
+    imageUrl: {
+      type: String,
+      required: true,
+    },
   },
   {
-    timestamps: true
-}
+    timestamps: true,
+  }
 );
 
 export const Shop = model("Shop", ShopSchema);

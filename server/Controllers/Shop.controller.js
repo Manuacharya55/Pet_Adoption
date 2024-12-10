@@ -3,6 +3,7 @@ import { asyncHandler } from "../Utils/AsyncHandler.js";
 import { ApiSuccess } from "../Utils/ApiSuccess.js";
 import { User } from "../Models/User.model.js";
 import { ApiError } from "../Utils/ApiError.js";
+import {uploadOnCloudinary} from "../Utils/Cloudinary.js"
 
 export const getAllShops = asyncHandler(async (req, res) => {
   const page = req.query.page || 1;
@@ -16,26 +17,33 @@ export const getAllShops = asyncHandler(async (req, res) => {
 
 export const addShop = asyncHandler(async (req, res) => {
   const { name, location, contactInfo } = req.body;
-
+  const imageLocalPath = req.file?.path;
   if (!name || !location || !contactInfo) {
     throw new ApiError(400, "Required fields are empty");
   }
 
+  if (!imageLocalPath) {
+    res.status(400).send(new ApiError(404, "Image Not Provided"));
+    return;
+  }
+  
+  
   const existingShop = await Shop.findOne({ ownerId: req.user._id });
   if (existingShop) {
     throw new ApiError(400, "You already have a shop");
   }
 
+  const image = await uploadOnCloudinary(imageLocalPath);
   if (!req.user || !req.user._id) {
     throw new ApiError(403, "You are not authorized to perform this action");
   }
-
 
   const newShop = await Shop.create({
     name,
     location,
     contactInfo,
     ownerId: req.user._id,
+    imageUrl:image.url
   });
 
   await User.findByIdAndUpdate(

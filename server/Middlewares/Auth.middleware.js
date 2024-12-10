@@ -11,6 +11,7 @@ export const verifyJWT = (req, res, next) => {
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
+    console.log("user verified")
   } catch (error) {
     throw new ApiError(401, error.message, "Invalid Token");
   }
@@ -19,12 +20,13 @@ export const verifyJWT = (req, res, next) => {
 
 export const verifyShopKeeper = async (req, res, next) => {
   const user = await User.findById(req.user._id);
+  console.log(user);
   if (user.role !== "shopkeeper") {
     return res.status(403).send(new ApiError(403, "Unauthorized Access"));
   }
   const shop = await Shop.findOne({ownerId: req.user._id});
   req.shop = shop;
-  console.log(shop)
+  console.log("admin specified")
   next();
 };
 

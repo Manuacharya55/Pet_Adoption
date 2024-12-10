@@ -12,13 +12,14 @@ import {
   editShop,
   deleteShop,
 } from "../Controllers/Shop.controller.js";
+import { upload } from "../Middlewares/Multer.middleware.js";
 const router = express.Router();
 
-router.route("/").get(verifyJWT, getAllShops).post(verifyJWT, addShop);
+router.route("/").get(verifyJWT, getAllShops).post(verifyJWT,upload.single("imageUrl"), addShop);
 router
   .route("/:id")
   .get(getSingleShop)
   .patch(verifyJWT, verifyShopKeeper, editShop)
-  .delete(verifyJWT,verifyAdmin,deleteShop);
+  .delete(verifyJWT, verifyAdmin, deleteShop);
 
 export default router;
