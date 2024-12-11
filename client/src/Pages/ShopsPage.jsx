@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
 import { useAdoption } from "../context/PetContext";
-import ShimmerLoadingPage from "./ShimmerLoadingPage";
 
 const ShopsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,7 +29,6 @@ const ShopsPage = () => {
         setShops(response.data.data || []);
         setIsLoading(false);
       }
-
     } catch (error) {
       console.error(error);
     }
@@ -40,26 +38,31 @@ const ShopsPage = () => {
   }, []);
 
   return (
-    <div className="container">
-      <h1>Adopt Pets By Shop</h1>
+    <>
+      <div className="banner">
+        <h1>Adopt Pets By Shop</h1>
+      </div>
       {isLoading ? (
-        <ShimmerLoadingPage />
+"Loading"
       ) : (
-        <div className="shops-holder">
+        <div className="container">
           {shops.length > 0 ? (
-            shops.map((shop) => <Card key={shop._id} data={
-              {
-                name: shop.name,
-                link: `/shops/${shop._id}`,
-                img: shop.imageUrl
-              }
-            } />)
+            shops.map((shop) => (
+              <Card
+                key={shop._id}
+                data={{
+                  name: shop.name,
+                  link: `/shops/${shop._id}`,
+                  img: shop.imageUrl,
+                }}
+              />
+            ))
           ) : (
             <div>No shops available</div>
           )}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

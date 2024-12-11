@@ -62,6 +62,7 @@ const AddPet = () => {
   return (
     <form onSubmit={handleSubmit}>
       <h1>Add Pet</h1>
+      <div className="column">
       <input
         type="text"
         placeholder="enter pet name"
@@ -76,6 +77,8 @@ const AddPet = () => {
         value={pet.age}
         onChange={handleChange}
       />
+      </div>
+      <div className="column">
       <input
         type="text"
         placeholder="enter pet breed"
@@ -97,6 +100,7 @@ const AddPet = () => {
         <option value="tortoise">Tortoise</option>
         <option value="Fish">Fish</option>
       </select>
+      </div>
 
       <textarea
         placeholder="pet description"
@@ -104,7 +108,8 @@ const AddPet = () => {
         value={pet.description}
         onChange={handleChange}
       ></textarea>
-      <input
+     <div className="column">
+     <input
         type="number"
         placeholder="enter pet price"
         name="price"
@@ -118,6 +123,7 @@ const AddPet = () => {
         ref={imageRef}
         onChange={handleImageChange}
       />
+     </div>
       <button type="submit">Add Pet</button>
     </form>
   );

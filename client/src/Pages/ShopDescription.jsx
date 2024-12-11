@@ -7,18 +7,21 @@ import { useAdoption } from "../context/PetContext";
 
 const ShopDescription = () => {
   const { id } = useParams(); // Get shop ID from route params
-  const {user} = useAdoption();
+  const { user } = useAdoption();
   const [shop, setShop] = useState(null);
   const [pets, setPets] = useState([]);
 
   const fetchShop = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/v1/shop/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          "Auth-Token": user.token, // Replace `user.token` with the actual token variable
-        },
-      });
+      const response = await axios.get(
+        `http://localhost:5000/api/v1/shop/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Auth-Token": user.token, // Replace `user.token` with the actual token variable
+          },
+        }
+      );
 
       if (response.data.success) {
         setShop(response.data.data.shop);
@@ -34,24 +37,37 @@ const ShopDescription = () => {
   }, [id]);
 
   return (
-    <div className="shop-container">
+    <>
       {shop ? (
-        <div className="shop-details">
-          <img src={shop.imageUrl} alt={shop.name} className="shop-image" />
-          <div className="shop-info">
+        <>
+          <div className="banner">
             <h1>{shop.name}</h1>
-            <p><strong>Location:</strong> {shop.location}</p>
-            <p><strong>Contact:</strong> {shop.contactInfo}</p>
-            <p><strong>Created At:</strong> {new Date(shop.createdAt).toLocaleDateString()}</p>
           </div>
-        </div>
+          <div className="banner-image">
+            <img src={shop.imageUrl} alt={shop.name} className="shop-image" />
+          </div>
+          <div className="banner-details">
+            <p>
+              <strong>Location:</strong> {shop.location}
+            </p>
+            <p>
+              <strong>Contact:</strong> {shop.contactInfo}
+            </p>
+            <p>
+              <strong>Created At:</strong>{" "}
+              {new Date(shop.createdAt).toLocaleDateString()}
+            </p>
+          </div>
+        </>
       ) : (
         <p>Loading shop details...</p>
       )}
 
-      <div className="pets-section">
+      <>
+        <div className="banner">
         <h2>Available Pets</h2>
-        <div className="shops-holder">
+        </div>
+        <div className="container">
           {pets.length > 0 ? (
             pets.map((pet) => (
               <Card
@@ -67,8 +83,8 @@ const ShopDescription = () => {
             <p>No pets available at the moment.</p>
           )}
         </div>
-      </div>
-    </div>
+      </>
+    </>
   );
 };
 

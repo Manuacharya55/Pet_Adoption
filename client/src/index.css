@@ -1,3 +1,12 @@
+:root {
+  --accent-color: #4c7cf4; /* Example for Theme 1 */
+  --background-color: #0d1117;
+  --component-color: #161b22;
+  --text-color: #e6e6e6;
+  --button-hover: #376bb3;
+  --adopt-hover: #d32f2f;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,9 +21,15 @@ body,
   height: 100%;
 }
 
+body {
+  background-color: var(--background-color);
+  color: var(--accent-color);
+}
 
-#root{
-  overflow: hidden;
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /* Register page */
 form {
@@ -24,85 +39,29 @@ form {
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 15px;
+  text-transform: capitalize;
 }
 
-form .column{
+form .column {
   width: 100%;
   display: grid;
   grid-template-columns: 220px 220px;
   gap: 20px;
 }
-form h1 {
-  font-size: 40px;
-}
 
-form input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid lightgrey;
-  border-radius: 25px;
-}
-
-form a {
-  text-align: left;
-  float: left;
-  text-decoration: none;
-}
-
-form button {
-  width: 100%;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  background-color: #2a7abc;
-  color: white;
+.container form {
+  background-color: var(--component-color);
+  border-radius: 10px;
 }
 
 /* navigation bar */
 
-nav {
-  padding: 20px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  text-transform: capitalize;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 15px;
-}
-
-nav ul a {
-  text-decoration: none;
-  color: black;
-}
-
-nav ul a:hover {
-  color: red;
-  transition: 0.5s ease;
-}
-
-nav ul a.active {
-  color: red;
-}
-
-#logout {
-  padding: 10px 20px;
-  border-radius: 25px;
-  background-color: red;
-  color: white;
-  border: none;
-}
 
 /* home page */
 .container {
+  max-width: 1400px;
   width: 100%;
   padding: 20px 40px;
 }
@@ -129,55 +88,18 @@ p {
 }
 
 /* card  */
-.card,.shop-pet-card {
-  width: 280px;
-  height: 280px;
-  border-radius: 20px;
 
-  overflow: hidden;
-  position: relative;
-  text-transform: capitalize;
-}
-
-.card img ,.shop-pet-card img{
-  width: 100%;
-  height: 100%;
-}
-
-.details {
-  width: 90%;
-  padding: 10px 20px;
-  border-radius: 10px;
-  background-color: white;
-  display: block;
-  margin: auto;
-  transform: translateY(10px);
-  text-align: center;
-}
-
-.details a {
-  text-decoration: none;
-  color: black;
-}
-
-.card a:hover {
-  color: red;
-  transition: 0.5s ease-in-out;
-}
-.card:hover .details {
-  transform: translateY(-90px);
-  transition: 0.5s ease-in-out;
-}
 
 /* shop-page */
 
 .shops-holder,
-.wishlist-holder,.pets-holder {
+.wishlist-holder,
+.pets-holder {
   width: 100%;
   padding-top: 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   gap: 30px;
   flex-wrap: wrap;
 }
@@ -189,31 +111,6 @@ p {
 
 /* login register */
 
-.auth-page {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  display: flex;
-}
-
-.image-holder {
-  width: 70%;
-  height: 100%;
-}
-
-.image-holder img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.form-holder {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 /* shimmer effect */
 .loading-card {
@@ -234,8 +131,7 @@ p {
   }
 }
 
-
-.op{
+.op {
   width: 100%;
 
   display: flex;
@@ -243,14 +139,14 @@ p {
   align-items: center;
   padding: 15px 0px;
 }
-#edit{
+#edit {
   padding: 10px 20px;
   background-color: rgb(228, 192, 12);
   border-radius: 8px;
   color: white;
 }
 
-#delete{
+#delete {
   padding: 10px 20px;
   background-color: red;
   border-radius: 8px;
@@ -258,132 +154,89 @@ p {
   border: none;
 }
 
-.shop-pet-card:hover .details{
+.shop-pet-card:hover .details {
   transform: translateY(-130px);
   transition: 0.5s ease;
 }
 
-textarea{
+textarea {
   width: 100%;
   height: 100px;
   padding: 10px;
   border-radius: 25px;
   resize: none;
+  background-color: transparent;
+  color: white;
 }
 
-select{
+select {
   width: 100%;
   padding: 10px;
   border-radius: 25px;
 }
 
-.shop-specific{
+.shop-specific {
   width: 70%;
-  height: 100%;
 }
 
-.pet-cards{
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-display: flex;
-justify-content: center;
-gap: 20px;
-flex-wrap: wrap ;
-}
-
-/* pet details */
-.pet-details{
+.pet-cards {
   width: 100%;
   height: 100%;
   padding: 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
-
-.image-holder{
-  width: 50%;
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.image-holder img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.pet-desc{
-  width: 50%;
-  height: 100%;
-  padding: 20px;
-}
-
-.pet-desc h3{
-  margin-top: 30px;
-  margin-bottom: 20px;
-}
-
-#wishlist,#adopt{
-  padding: 10px;
-  border: none;
-  border-radius: 25px;
-  min-width: 100px;
-  margin-top: 10px;
-  margin-right: 10px;
-}
-
-#wishlist{
-  background-color: #2a7abc;
-  color: white;
-}
-
-#adopt{
-  background-color: red;
-  color: white;
-}
-
 
 /* shop description style */
-.shop-container{
+.shop-container {
+  max-width: 1400px;
   width: 100%;
   height: 100%;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
 }
 
-.shop-details{
+.shop-container .shop-details {
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 30px;
   align-items: center;
+  gap: 30px;
+  background-color: var(--component-color);
 }
 
-.shop-details img{
+/* .shop-container .shops-holder{
+  justify-content: start;
+} */
+.shop-details img {
   border-radius: 10px;
 }
-.pets-section{
+.pets-section {
   width: 100%;
-  padding: 20px;
 }
 
-.pets-section h2{
+.pets-section h2 {
   font-size: 3rem;
   margin-top: 20px;
   margin-bottom: 12px;
 }
 
-
-.table-holder{
+.table-holder {
   width: 100%;
   height: 100%;
   padding: 30px;
 }
+
+.shopkeeper-form {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+

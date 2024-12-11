@@ -45,3 +45,30 @@ export const profile = asyncHandler(async (req, res) => {
     }
     res.send(new ApiSuccess(200,"User profile",user));
 });
+
+export const addtowishlist = asyncHandler(async (req, res) => {
+  const { petId } = req.params;
+    const userId = req.user._id; 
+
+    const existingpet = await Pet.findById(petId);
+    if (!existingpet) {
+      return res.status(404).json(new ApiError(404,"No Such Pets"));
+    }
+
+    // Find the user and update their wishlist
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json(new ApiError(404,"No Such Users"));
+    }
+
+    // Check if the pet is already in the wishlist
+    if (user.wishlist.includes(petId)) {
+      return res.status(400).json({ message: 'Pet already in wishlist.' });
+    }
+
+    // Add pet to the wishlist
+    user.wishlist.push(petId);
+    await user.save();
+
+    res.status(200).json(new ApiSuccess(200,"Added Sucessfully",existingpet));
+});

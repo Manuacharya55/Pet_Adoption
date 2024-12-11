@@ -30,8 +30,12 @@ const {user} = useAdoption()
   // Handle status change
 
   return (
-    <div className="table-holder">
-        <TableContainer component={Paper}>
+    <>
+    <div className="banner">
+      <h1>Adoption Approved</h1>
+    </div>
+    <div className="container">
+        <TableContainer component={Paper}  className="custom-table">
       <Table>
         <TableHead>
           <TableRow>
@@ -56,6 +60,7 @@ const {user} = useAdoption()
       </Table>
     </TableContainer>
     </div>
+    </>
   );
 };
 

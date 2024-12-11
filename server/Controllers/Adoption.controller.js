@@ -12,8 +12,8 @@ const sendEmail = async (shopname,recipient, subject, text) => {
         host: 'smtp.ethereal.email',
         port: 587,
         auth: {
-            user: 'irving.johns@ethereal.email',
-            pass: 'Z1v46bXjYTKFaVA48u'
+            user: process.env.NODEMAILER_USER,
+            pass: process.env.NODEMAILER_PASSWORD
         }
     });
 

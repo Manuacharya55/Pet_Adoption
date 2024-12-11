@@ -47,7 +47,7 @@ const ShopKeeper = () => {
         toast.success("Registered as shopkeeper");
         console.log(response.data.data);
         setUserToken(response.data.data.token, "shopkeeper");
-        navigate("/home");
+        navigate("/mypets");
       } else {
         toast.dismiss("uploadToast");
         toast.error(response.data.message);

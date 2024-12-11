@@ -1,6 +1,8 @@
 import React from "react";
 import img from "../assets/one.jpg";
 import Register from "../components/Register";
+import "../styles/auth.css"
+import "../styles/generalstyles.css"
 const RegisterPage = () => {
   return (
     <div className="auth-page">

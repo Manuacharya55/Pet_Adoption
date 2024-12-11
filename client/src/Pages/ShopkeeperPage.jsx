@@ -39,7 +39,11 @@ const ShopkeeperPage = () => {
   }, []);
 
   return (
-    <div className="auth-page">
+    <>
+    <div className="banner">
+      <h1>Welcome to dashboard</h1>
+    </div>
+    <div className="container grid">
       <div className="shop-specific">
         {isLoading ? (
           <h1>Loading...</h1>
@@ -55,11 +59,23 @@ const ShopkeeperPage = () => {
                 }}
               />
             ))}
+            {pets.map((pet) => (
+              <PetCard
+                key={pet._id}
+                data={{
+                  name: pet.name,
+                  id: pet._id,
+                  img: pet.imageUrl,
+                }}
+              />
+            ))}
+            
           </div>
         )}
       </div>
       <AddPet />
     </div>
+    </>
   );
 };
 

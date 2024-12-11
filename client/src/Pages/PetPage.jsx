@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
 import { useAdoption } from "../context/PetContext";
-import ShimmerLoadingPage from "./ShimmerLoadingPage";
-
 const PetPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [pets, setPets] = useState([]);
@@ -38,12 +36,80 @@ const PetPage = () => {
     fetchpets();
   }, [])
   return (
-    <div className="container">
+    <>
+    <div className="banner">
       <h1>Adopt Pets By Shop</h1>
+    </div>
       {isLoading ? (
-        <ShimmerLoadingPage />
+       "Loading"
       ) : (
-        <div className="pets-holder">
+        <div className="container">
+          {pets.length > 0 ? (
+            pets.map((shop) => <Card key={shop._id} data={
+              {
+                name: shop.name,
+                link: `/pets/${shop._id}`,
+                img: shop.imageUrl
+              }
+            } />)
+          ) : (
+            <div>No pets available</div>
+          )}
+          {pets.length > 0 ? (
+            pets.map((shop) => <Card key={shop._id} data={
+              {
+                name: shop.name,
+                link: `/pets/${shop._id}`,
+                img: shop.imageUrl
+              }
+            } />)
+          ) : (
+            <div>No pets available</div>
+          )}
+          {pets.length > 0 ? (
+            pets.map((shop) => <Card key={shop._id} data={
+              {
+                name: shop.name,
+                link: `/pets/${shop._id}`,
+                img: shop.imageUrl
+              }
+            } />)
+          ) : (
+            <div>No pets available</div>
+          )}
+          {pets.length > 0 ? (
+            pets.map((shop) => <Card key={shop._id} data={
+              {
+                name: shop.name,
+                link: `/pets/${shop._id}`,
+                img: shop.imageUrl
+              }
+            } />)
+          ) : (
+            <div>No pets available</div>
+          )}
+          {pets.length > 0 ? (
+            pets.map((shop) => <Card key={shop._id} data={
+              {
+                name: shop.name,
+                link: `/pets/${shop._id}`,
+                img: shop.imageUrl
+              }
+            } />)
+          ) : (
+            <div>No pets available</div>
+          )}
+          {pets.length > 0 ? (
+            pets.map((shop) => <Card key={shop._id} data={
+              {
+                name: shop.name,
+                link: `/pets/${shop._id}`,
+                img: shop.imageUrl
+              }
+            } />)
+          ) : (
+            <div>No pets available</div>
+          )}
           {pets.length > 0 ? (
             pets.map((shop) => <Card key={shop._id} data={
               {
@@ -57,7 +123,7 @@ const PetPage = () => {
           )}
         </div>
       )}
-    </div>
+    </>
   );
 }
 

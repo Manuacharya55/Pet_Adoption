@@ -22,6 +22,10 @@ const UserSchema = new Schema(
       enum: ["user", "admin", "shopkeeper"],
       default: "user",
     },
+    wishlist:[{
+      type: Schema.Types.ObjectId,
+      ref: "Pet"
+    }]
   },
   {
     timestamps: true,

@@ -36,7 +36,7 @@ const handleSubmit = async(e) => {
 }
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Register</h1>
+      <h1>Register your account</h1>
       <input type="text" placeholder="enter your full name" name="name" value={register.name} onChange={handleChange}/>
       <input type="text" placeholder="enter your email" name="email" value={register.email} onChange={handleChange}/>
       <input type="text" placeholder="enter your password" name="password" value={register.password} onChange={handleChange}/>
