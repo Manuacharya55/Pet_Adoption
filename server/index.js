@@ -26,4 +26,4 @@ connectDB()
 app.use("/api/v1/auth", AuthRouter);
 app.use("/api/v1/pet", PetRouter);
 app.use("/api/v1/shop", ShopRouter);
-app.use("/api/v1/adoption", AdoptionRouter);
+app.use("/api/v1/adopt", AdoptionRouter);

@@ -21,7 +21,7 @@ router.route("/specificpet").get(verifyJWT, verifyShopKeeper, getPetByOwner);
 router
   .route("/:id")
   .get(verifyJWT, getSinglePet)
-  .patch(verifyJWT, verifyShopKeeper, editPet)
+  .patch(verifyJWT, verifyShopKeeper,upload.single("imageUrl"), editPet)
   .delete(verifyJWT, verifyShopKeeper, deletePet);
 
 export default router;

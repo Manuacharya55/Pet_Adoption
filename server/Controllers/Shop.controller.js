@@ -4,6 +4,7 @@ import { ApiSuccess } from "../Utils/ApiSuccess.js";
 import { User } from "../Models/User.model.js";
 import { ApiError } from "../Utils/ApiError.js";
 import {uploadOnCloudinary} from "../Utils/Cloudinary.js"
+import { Pet } from "../Models/Pet.model.js";
 
 export const getAllShops = asyncHandler(async (req, res) => {
   const page = req.query.page || 1;
@@ -63,11 +64,11 @@ export const addShop = asyncHandler(async (req, res) => {
 export const getSingleShop = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const shop = await Shop.findById(id);
-
+  const pets = await Pet.find({shopId:shop._id})
   if (!shop) {
     throw new ApiError(404, "Shop not found");
   }
-  res.send(new ApiSuccess(200, "Fetched Data Successfully", shop));
+  res.send(new ApiSuccess(200, "Fetched Data Successfully", {shop,pets}));
 });
 
 

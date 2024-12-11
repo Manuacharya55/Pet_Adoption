@@ -11,6 +11,12 @@ import ShopDescription from "./Pages/ShopDescription";
 import PetDescription from "./Pages/PetDescription";
 import ShopkeeperPage from "./Pages/ShopkeeperPage";
 import AddPet from "./components/AddPet";
+import EditPet from "./components/EditPet";
+import ShopkeeperAdoptionTable from "./components/ShopkeeperAdoptionTable";
+import AdoptionApprovedPage from "./Pages/AdoptionApprovedPage";
+import AdoptionRejectedPage from "./Pages/AdoptionRejectedPage";
+import ProtectedLayout from "./components/ProtectedLayout";
+import EditPage from "./Pages/EditPage";
 
 function App() {
   return (
@@ -20,18 +26,26 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
 
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/shops" element={<ShopsPage />} />
-        <Route path="/shops/:id" element={<ShopDescription />} />
-        <Route path="/pets" element={<PetPage />} />
-        <Route path="/pets/:id" element={<PetDescription />} />
-        <Route path="/wishlist" element={<WishListPage />} />
-        <Route path="/shopkeeper" element={<BecomeShopkeeper />} />
+        <Route element={<ProtectedRoute />}>
+          <Route element={<ProtectedLayout />}>
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/shops" element={<ShopsPage />} />
+            <Route path="/shops/:id" element={<ShopDescription />} />
+            <Route path="/pets" element={<PetPage />} />
+            <Route path="/pets/:id" element={<PetDescription />} />
+            <Route path="/wishlist" element={<WishListPage />} />
+            <Route path="/shopkeeper" element={<BecomeShopkeeper />} />
+          
 
-        <Route path="/mypets" element={<ShopkeeperPage />} />
-        <Route path="/deletepet/:id" element={<ShopkeeperPage />} />
-        <Route path="/editpet/:id" element={<ShopkeeperPage />} />
-        <Route path="/addpet" element={<ShopkeeperPage />} />
+          <Route path="/mypets" element={<ShopkeeperPage />} />
+          <Route path="/deletepet/:id" element={<ShopkeeperPage />} />
+          <Route path="/editpet/:id" element={<EditPage />} />
+          <Route path="/addpet" element={<ShopkeeperPage />} />
+          <Route path="/adoption" element={<ShopkeeperAdoptionTable />} />
+          <Route path="/approved" element={<AdoptionApprovedPage />} />
+          <Route path="/rejected" element={<AdoptionRejectedPage />} />
+          </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

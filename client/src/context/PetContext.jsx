@@ -25,6 +25,12 @@ export const AdoptionProvider = ({ children }) => {
     setIsLoggedin(false);
   };
 
+  useEffect(()=>{
+    if(localStorage.getItem("token") && localStorage.getItem("role")){
+      setUserToken(localStorage.getItem("token"), localStorage.getItem("role"))
+      setIsLoggedin(true)
+    }
+  },[])
   return (
     <AdoptionContext.Provider
       value={{ user, setUserToken, isLoggedin, logout }}

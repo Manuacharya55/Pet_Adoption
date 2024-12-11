@@ -3,7 +3,7 @@ import { Shop } from "../Models/Shop.model.js";
 import { ApiError } from "../Utils/ApiError.js";
 import { ApiSuccess } from "../Utils/ApiSuccess.js";
 import { asyncHandler } from "../Utils/AsyncHandler.js";
-import {uploadOnCloudinary} from "../Utils/Cloudinary.js"
+import { uploadOnCloudinary } from "../Utils/Cloudinary.js";
 
 export const getAllPets = asyncHandler(async (req, res) => {
   const page = parseInt(req.query.page) || 1;
@@ -48,14 +48,14 @@ export const addPet = asyncHandler(async (req, res) => {
     description,
     price,
     shopId: _id,
-    imageUrl:image.url
+    imageUrl: image.url,
   });
   res.send(new ApiSuccess(201, "Pet added successfully", pet));
 });
 
 export const getSinglePet = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const pet = await Pet.findById(id);
+  const pet = await Pet.findById(id).populate("shopId");
   if (!pet) {
     throw new ApiError(404, "Pet not found");
   }
@@ -64,30 +64,37 @@ export const getSinglePet = asyncHandler(async (req, res) => {
 
 export const editPet = asyncHandler(async (req, res) => {
   const { name, age, breed, species, description, price } = req.body;
+  const imageLocalPath = req.file?.path;
   const { _id } = req.shop;
   const { id } = req.params;
-
+  let image;
   if (!name || !age || !breed || !species || !description || !price) {
     throw new ApiError(400, "All fields are required");
+  }
+
+  if (imageLocalPath) {
+    image = await uploadOnCloudinary(imageLocalPath);
   }
 
   const existingShop = await Shop.findById(_id);
   if (!existingShop) {
     throw new ApiError(400, "No shop found");
   }
-  const pet = await Pet.findByIdAndUpdate(
-    id,
-    {
-      name,
-      age,
-      breed,
-      species,
-      description,
-      price,
-      shopId: _id,
-    },
-    { new: true }
-  );
+  const updateData = {
+    name,
+    age,
+    breed,
+    species,
+    description,
+    price,
+    shopId: _id,
+  };
+
+  if (image) {
+    updateData.imageUrl = image.url;
+  }
+
+  const pet = await Pet.findByIdAndUpdate(id, updateData, { new: true });
 
   if (!pet) {
     throw new ApiError(404, "Pet not found");
@@ -114,10 +121,10 @@ export const deletePet = asyncHandler(async (req, res) => {
 
 export const getPetByOwner = asyncHandler(async (req, res) => {
   const { _id } = req.shop;
-  console.log(_id)
+  console.log(_id);
   const pets = await Pet.find({ shopId: _id });
 
-  if(!pets){
+  if (!pets) {
     return res.status(400).send(new ApiError(400, "No pets found"));
   }
 

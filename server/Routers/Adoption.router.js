@@ -2,11 +2,19 @@ import express from "express";
 import {
   getAllAdoption,
   addAdoption,
-  editAdoption,
+  editAdoptionByAdmin,
+  getRejectedAdoption,
+  getApprovedAdoption,
 } from "../Controllers/Adoption.controller.js";
+import { verifyJWT, verifyShopKeeper } from "../Middlewares/Auth.middleware.js";
 const router = express.Router();
 
-router.route("/").get(getAllAdoption).post(addAdoption);
-router.route("/:id").patch(editAdoption);
+router.route("/").get(verifyJWT, verifyShopKeeper, getAllAdoption);
+router.route("/approved").get(verifyJWT, verifyShopKeeper, getApprovedAdoption);
+router.route("/rejected").get(verifyJWT, verifyShopKeeper, getRejectedAdoption);
+router
+  .route("/:id")
+  .post(verifyJWT, addAdoption)
+  .patch(verifyJWT, verifyShopKeeper, editAdoptionByAdmin);
 
 export default router;

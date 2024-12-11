@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const PetSchema = new Schema(
+const AdoptionSchema = new Schema(
   {
     userId: {
       type: Schema.Types.ObjectId,
@@ -9,6 +9,10 @@ const PetSchema = new Schema(
     petId: {
       type: Schema.Types.ObjectId,
       ref: "Pet",
+    },
+    shopId: {
+      type: Schema.Types.ObjectId,
+      ref: "Shop",
     },
     status: {
       type: String,
@@ -21,4 +25,4 @@ const PetSchema = new Schema(
 }
 );
 
-export const Adoption = model("Pet", PetSchema);
+export const Adoption = model("Adoption", AdoptionSchema);

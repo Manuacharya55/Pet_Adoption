@@ -51,7 +51,7 @@ const ShopsPage = () => {
               {
                 name: shop.name,
                 link: `/shops/${shop._id}`,
-                img: "https://img.freepik.com/free-photo/3d-illustration-showcasing-friendship-cats-dogs_23-2151483371.jpg?uid=R95440870&ga=GA1.1.1474846998.1733319499&semt=ais_hybrid"
+                img: shop.imageUrl
               }
             } />)
           ) : (

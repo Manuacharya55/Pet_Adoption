@@ -1,12 +1,13 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useAdoption } from "../context/PetContext";
 import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
 const ProtectedRoute = () => {
-  const {isLoggedIn} = useAdoption();
+  const {isLoggedin} = useAdoption();
+  console.log(isLoggedin)
   const navigate = useNavigate();
-  return isLoggedIn && <><NavBar/> <Outlet /></>
+  return isLoggedin ? <Outlet/> : <Navigate to="/login" />
 };
 
 export default ProtectedRoute;
