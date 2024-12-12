@@ -1,5 +1,6 @@
+import { Pet } from "../Models/Pet.model.js";
 import { User } from "../Models/User.model.js";
-import { ApiError } from "../Utils/ApiError.js";
+import ApiError from "../Utils/ApiError.js";
 import { ApiSuccess } from "../Utils/ApiSuccess.js";
 import { asyncHandler } from "../Utils/AsyncHandler.js";
 
@@ -47,28 +48,49 @@ export const profile = asyncHandler(async (req, res) => {
 });
 
 export const addtowishlist = asyncHandler(async (req, res) => {
-  const { petId } = req.params;
+  const { id } = req.params;
     const userId = req.user._id; 
 
-    const existingpet = await Pet.findById(petId);
+    const existingpet = await Pet.findById(id);
+
     if (!existingpet) {
       return res.status(404).json(new ApiError(404,"No Such Pets"));
     }
 
-    // Find the user and update their wishlist
+
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json(new ApiError(404,"No Such Users"));
     }
 
-    // Check if the pet is already in the wishlist
-    if (user.wishlist.includes(petId)) {
-      return res.status(400).json({ message: 'Pet already in wishlist.' });
+    if (user.wishlist.includes(id)) {
+      return res.status(400).send(new ApiError(404,"Pet is already in the wishlist"));
     }
 
-    // Add pet to the wishlist
-    user.wishlist.push(petId);
+    user.wishlist.push(id);
     await user.save();
 
     res.status(200).json(new ApiSuccess(200,"Added Sucessfully",existingpet));
+});
+
+export const removefromwishlist = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const userId = req.user._id;
+
+
+  const user = await User.findById(userId);
+  if (!user) {
+    return res.status(404).json(new ApiError(404, "No Such User"));
+  }
+
+
+  const wishlistIndex = user.wishlist.indexOf(id);
+  if (wishlistIndex === -1) {
+    return res.status(400).json({ message: 'Pet not found in wishlist.' });
+  }
+
+  user.wishlist.splice(wishlistIndex, 1);
+  await user.save();
+
+  res.status(200).json(new ApiSuccess(200, "Removed Successfully", user));
 });

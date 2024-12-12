@@ -2,7 +2,6 @@ import express from "express";
 import {
   verifyJWT,
   verifyShopKeeper,
-  verifyAdmin,
 } from "../Middlewares/Auth.middleware.js";
 
 import {
@@ -20,6 +19,6 @@ router
   .route("/:id")
   .get(getSingleShop)
   .patch(verifyJWT, verifyShopKeeper, editShop)
-  .delete(verifyJWT, verifyAdmin, deleteShop);
+
 
 export default router;

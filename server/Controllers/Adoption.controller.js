@@ -1,6 +1,6 @@
 import { asyncHandler } from "../Utils/AsyncHandler.js";
 import { ApiSuccess } from "../Utils/ApiSuccess.js";
-import { ApiError } from "../Utils/ApiError.js";
+import ApiError from "../Utils/ApiError.js";
 import { Pet } from "../Models/Pet.model.js";
 import { User } from "../Models/User.model.js";
 import { Adoption } from "../Models/Adoption.model.js";
@@ -46,7 +46,7 @@ export const getAllAdoption = asyncHandler(async (req, res) => {
       match: { shopId },
     });
 
-  res.status(200).json(new ApiSuccess(adoptions, "Successfully fetched"));
+  res.status(200).json(new ApiSuccess(200, "Successfully fetched",adoptions));
 });
 
 // Add adoption request
@@ -76,7 +76,6 @@ export const editAdoptionByAdmin = asyncHandler(async (req, res) => {
   const { id: adoptionId } = req.params;
   const { status } = req.body;
 
-  console.log("hoooo")
   if (!["approved", "rejected"].includes(status)) {
     res.send( new ApiError("Invalid status", 400))
   }
@@ -98,7 +97,6 @@ export const editAdoptionByAdmin = asyncHandler(async (req, res) => {
   adoption.status = status;
   await adoption.save();
 
-  // Send email notification to user
   const user = adoption.userId;
   const { name, email } = await User.findById(user);
   const subject = `Adoption Request ${

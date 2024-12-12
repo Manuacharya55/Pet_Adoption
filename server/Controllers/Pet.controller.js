@@ -1,17 +1,14 @@
 import { Pet } from "../Models/Pet.model.js";
 import { Shop } from "../Models/Shop.model.js";
-import { ApiError } from "../Utils/ApiError.js";
+import ApiError from "../Utils/ApiError.js";
 import { ApiSuccess } from "../Utils/ApiSuccess.js";
 import { asyncHandler } from "../Utils/AsyncHandler.js";
 import { uploadOnCloudinary } from "../Utils/Cloudinary.js";
 
 export const getAllPets = asyncHandler(async (req, res) => {
-  const page = parseInt(req.query.page) || 1;
-  const limit = parseInt(req.query.limit) || 12;
+  const speciesQuery = req.query.species ? { species: req.query.species } : {};
 
-  const skip = (page - 1) * limit;
-
-  const pets = await Pet.find().skip(skip).limit(limit);
+  const pets = await Pet.find(speciesQuery);
 
   res.send(new ApiSuccess(200, "Data Successfully fetched", pets));
 });
@@ -19,7 +16,7 @@ export const getAllPets = asyncHandler(async (req, res) => {
 export const addPet = asyncHandler(async (req, res) => {
   const { name, age, breed, species, description, price } = req.body;
   const imageLocalPath = req.file?.path;
-
+  
   const { _id } = req.shop;
   if (!name || !age || !breed || !species || !description || !price) {
     throw new ApiError(400, "All fields are required");
@@ -110,7 +107,6 @@ export const deletePet = asyncHandler(async (req, res) => {
   if (!existingShop) {
     throw new ApiError(400, "No shop found");
   }
-  console.log("Delete");
   const pet = await Pet.findByIdAndDelete(id);
 
   if (!pet) {
@@ -121,7 +117,6 @@ export const deletePet = asyncHandler(async (req, res) => {
 
 export const getPetByOwner = asyncHandler(async (req, res) => {
   const { _id } = req.shop;
-  console.log(_id);
   const pets = await Pet.find({ shopId: _id });
 
   if (!pets) {

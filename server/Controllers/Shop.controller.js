@@ -2,17 +2,12 @@ import { Shop } from "../Models/Shop.model.js";
 import { asyncHandler } from "../Utils/AsyncHandler.js";
 import { ApiSuccess } from "../Utils/ApiSuccess.js";
 import { User } from "../Models/User.model.js";
-import { ApiError } from "../Utils/ApiError.js";
-import {uploadOnCloudinary} from "../Utils/Cloudinary.js"
+import ApiError from "../Utils/ApiError.js";
+import { uploadOnCloudinary } from "../Utils/Cloudinary.js";
 import { Pet } from "../Models/Pet.model.js";
 
 export const getAllShops = asyncHandler(async (req, res) => {
-  const page = req.query.page || 1;
-  const limit = parseInt(req.query.limit) || 2;
-
-  const skip = parseInt(page - 1) * limit;
-
-  const shops = await Shop.find().skip(skip).limit(limit);
+  const shops = await Shop.find();
   res.send(new ApiSuccess(200, "Fetched Data Successfully", shops));
 });
 
@@ -27,8 +22,7 @@ export const addShop = asyncHandler(async (req, res) => {
     res.status(400).send(new ApiError(404, "Image Not Provided"));
     return;
   }
-  
-  
+
   const existingShop = await Shop.findOne({ ownerId: req.user._id });
   if (existingShop) {
     throw new ApiError(400, "You already have a shop");
@@ -44,7 +38,7 @@ export const addShop = asyncHandler(async (req, res) => {
     location,
     contactInfo,
     ownerId: req.user._id,
-    imageUrl:image.url
+    imageUrl: image.url,
   });
 
   await User.findByIdAndUpdate(
@@ -60,17 +54,15 @@ export const addShop = asyncHandler(async (req, res) => {
   );
 });
 
-
 export const getSingleShop = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const shop = await Shop.findById(id);
-  const pets = await Pet.find({shopId:shop._id})
+  const pets = await Pet.find({ shopId: shop._id });
   if (!shop) {
     throw new ApiError(404, "Shop not found");
   }
-  res.send(new ApiSuccess(200, "Fetched Data Successfully", {shop,pets}));
+  res.send(new ApiSuccess(200, "Fetched Data Successfully", { shop, pets }));
 });
-
 
 export const editShop = asyncHandler(async (req, res) => {
   const { id } = req.params;
