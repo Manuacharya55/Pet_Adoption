@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { useAdoption } from "../context/PetContext";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 const PetDescription = () => {
   const { id } = useParams(); // Extract the pet ID from the route params
@@ -41,10 +42,7 @@ const PetDescription = () => {
   const handleAddToWishlist = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/v1/wishlist/${id}`,
-        {
-          petId: id,
-        },
+        `http://localhost:5000/api/v1/auth/${id}`,{},
         {
           headers: {
             "Content-Type": "application/json",
@@ -53,10 +51,12 @@ const PetDescription = () => {
         }
       );
       if (response.data.success) {
-        alert("Pet added to wishlist successfully!");
+        toast.success("Pet added to wishlist successfully!");
+      }else{
+        toast.error(response.data.message);
       }
     } catch (error) {
-      alert("Failed to add pet to wishlist.");
+      toast.error("Pet already in wishlist");
     }
   };
 
@@ -75,10 +75,10 @@ const PetDescription = () => {
         }
       );
       if (response.data.success) {
-        alert("Adoption request submitted successfully!");
+        toast.success("Adoption request submitted successfully!");
       }
     } catch (error) {
-      alert("Failed to submit adoption request.");
+      toast.error("Failed to submit adoption request.");
     }
   };
 
@@ -97,19 +97,17 @@ const PetDescription = () => {
           </div>
           <div className="banner-details banner-column">
             <div className="column">
-            <p>
-              <strong>Breed:</strong> {pet.breed}
-            </p>
-            <p>
-              <strong>Species:</strong> {pet.species}
-            </p>
-            <p>
-              <strong>Age:</strong> {pet.age} years
-            </p>
+              <p>
+                <strong>Breed:</strong> {pet.breed}
+              </p>
+              <p>
+                <strong>Species:</strong> {pet.species}
+              </p>
+              <p>
+                <strong>Age:</strong> {pet.age} years
+              </p>
             </div>
-            <p>
-              {pet.description}
-            </p>
+            <p>{pet.description}</p>
             <h1 className="pet-price">Price: ${pet.price}</h1>
             <div className="btn-col">
               <button onClick={handleAddToWishlist} id="wishlist">
@@ -139,7 +137,6 @@ const PetDescription = () => {
               </NavLink>
             </p>
           </div>
-          
         </>
       )}
     </>

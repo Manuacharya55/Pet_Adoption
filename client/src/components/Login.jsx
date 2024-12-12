@@ -33,14 +33,13 @@ const Login = () => {
 
       if (response.data.success) {
         toast.success("log in Successful");
-        console.log(response.data.data)
         setUserToken(response.data.data.token, response.data.data.user.role);
         navigate("/home")
       } else {
         toast.error(response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
   return (

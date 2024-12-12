@@ -11,6 +11,8 @@ export const AdoptionProvider = ({ children }) => {
     Boolean(localStorage.getItem("token") && localStorage.getItem("role"))
   );
 
+  const [pets, setPets] = useState([]);
+
   const setUserToken = (token, role) => {
     localStorage.setItem("token", token);
     localStorage.setItem("role", role);
@@ -33,7 +35,7 @@ export const AdoptionProvider = ({ children }) => {
   },[])
   return (
     <AdoptionContext.Provider
-      value={{ user, setUserToken, isLoggedin, logout }}
+      value={{ user, setUserToken, isLoggedin, logout,pets, setPets }}
     >
       {children}
     </AdoptionContext.Provider>

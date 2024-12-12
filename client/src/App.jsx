@@ -10,8 +10,6 @@ import BecomeShopkeeper from "./Pages/BecomeShopkeeper";
 import ShopDescription from "./Pages/ShopDescription";
 import PetDescription from "./Pages/PetDescription";
 import ShopkeeperPage from "./Pages/ShopkeeperPage";
-import AddPet from "./components/AddPet";
-import EditPet from "./components/EditPet";
 import ShopkeeperAdoptionTable from "./components/ShopkeeperAdoptionTable";
 import AdoptionApprovedPage from "./Pages/AdoptionApprovedPage";
 import AdoptionRejectedPage from "./Pages/AdoptionRejectedPage";
@@ -35,16 +33,15 @@ function App() {
             <Route path="/pets/:id" element={<PetDescription />} />
             <Route path="/wishlist" element={<WishListPage />} />
             <Route path="/shopkeeper" element={<BecomeShopkeeper />} />
-          
 
-          <Route path="/mypets" element={<ShopkeeperPage />} />
-          <Route path="/deletepet/:id" element={<ShopkeeperPage />} />
-          <Route path="/editpet/:id" element={<EditPage />} />
-          <Route path="/addpet" element={<ShopkeeperPage />} />
-          <Route path="/adoption" element={<ShopkeeperAdoptionTable />} />
-          <Route path="/approved" element={<AdoptionApprovedPage />} />
-          <Route path="/rejected" element={<AdoptionRejectedPage />} />
-          </Route>
+              <Route path="/mypets" element={<ShopkeeperPage />} />
+              <Route path="/deletepet/:id" element={<ShopkeeperPage />} />
+              <Route path="/editpet/:id" element={<EditPage />} />
+              <Route path="/addpet" element={<ShopkeeperPage />} />
+              <Route path="/adoption" element={<ShopkeeperAdoptionTable />} />
+              <Route path="/approved" element={<AdoptionApprovedPage />} />
+              <Route path="/rejected" element={<AdoptionRejectedPage />} />
+            </Route>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -19,28 +19,21 @@ const EditPet = () => {
     price: 0,
   });
 
-  useEffect(() => {
-    const fetchPet = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/v1/pet/${id}`,
-          {
-            headers: {
-              "Auth-Token": user.token,
-            },
-          }
-        );
-        if (response.data.success) {
-          setPet(response.data.data);
-        } else {
-          toast.error("Failed to fetch pet details");
-        }
-      } catch (error) {
-        console.error("Error fetching pet details:", error);
-        toast.error("An error occurred while fetching pet details");
-      }
-    };
+  const fetchPet = async () => {
+    const response = await HandleRequest({
+      method: "get",
+      token: user.token,
+      url: `pet/${id}`,
+      onSuccess: "",
+      onError: "Failed to delete pet",
+    });
 
+    if (response) {
+      setPet(response.data.data);
+    }
+  };
+
+  useEffect(() => {
     fetchPet();
   }, [id, user.token]);
 
@@ -61,7 +54,6 @@ const EditPet = () => {
     });
 
     try {
-      console.log(pet);
 
       const response = await axios.patch(
         `http://localhost:5000/api/v1/pet/${id}`,
@@ -91,8 +83,7 @@ const EditPet = () => {
 
   return (
     <form onSubmit={handleSubmit} className="form-grid">
-
-        <h1>Edit Pet</h1>
+      <h1>Edit Pet</h1>
 
       <div className="column">
         <input

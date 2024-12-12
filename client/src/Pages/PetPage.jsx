@@ -55,72 +55,7 @@ const PetPage = () => {
           ) : (
             <div>No pets available</div>
           )}
-          {pets.length > 0 ? (
-            pets.map((shop) => <Card key={shop._id} data={
-              {
-                name: shop.name,
-                link: `/pets/${shop._id}`,
-                img: shop.imageUrl
-              }
-            } />)
-          ) : (
-            <div>No pets available</div>
-          )}
-          {pets.length > 0 ? (
-            pets.map((shop) => <Card key={shop._id} data={
-              {
-                name: shop.name,
-                link: `/pets/${shop._id}`,
-                img: shop.imageUrl
-              }
-            } />)
-          ) : (
-            <div>No pets available</div>
-          )}
-          {pets.length > 0 ? (
-            pets.map((shop) => <Card key={shop._id} data={
-              {
-                name: shop.name,
-                link: `/pets/${shop._id}`,
-                img: shop.imageUrl
-              }
-            } />)
-          ) : (
-            <div>No pets available</div>
-          )}
-          {pets.length > 0 ? (
-            pets.map((shop) => <Card key={shop._id} data={
-              {
-                name: shop.name,
-                link: `/pets/${shop._id}`,
-                img: shop.imageUrl
-              }
-            } />)
-          ) : (
-            <div>No pets available</div>
-          )}
-          {pets.length > 0 ? (
-            pets.map((shop) => <Card key={shop._id} data={
-              {
-                name: shop.name,
-                link: `/pets/${shop._id}`,
-                img: shop.imageUrl
-              }
-            } />)
-          ) : (
-            <div>No pets available</div>
-          )}
-          {pets.length > 0 ? (
-            pets.map((shop) => <Card key={shop._id} data={
-              {
-                name: shop.name,
-                link: `/pets/${shop._id}`,
-                img: shop.imageUrl
-              }
-            } />)
-          ) : (
-            <div>No pets available</div>
-          )}
+          
         </div>
       )}
     </>

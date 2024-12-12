@@ -26,12 +26,12 @@ const handleSubmit = async(e) => {
     
       if(response.data.success){
         toast.success("Registration Successful")
-        console.log(response.data)
+        //console.log(response.data)
       }else{
         toast.error(response.data.message)
       }
  } catch (error) {
-    console.log(error)
+    //console.log(error)
  }
 }
   return (

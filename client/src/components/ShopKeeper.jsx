@@ -28,7 +28,6 @@ const ShopKeeper = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(shop)
     toast.info("Image is uploading...",{ autoClose: false, toastId: "uploadToast" });
     try {
       const response = await axios.post(
@@ -45,7 +44,7 @@ const ShopKeeper = () => {
       if (response.data.success) {
         toast.dismiss("uploadToast");
         toast.success("Registered as shopkeeper");
-        console.log(response.data.data);
+        //console.log(response.data.data);
         setUserToken(response.data.data.token, "shopkeeper");
         navigate("/mypets");
       } else {
@@ -53,7 +52,7 @@ const ShopKeeper = () => {
         toast.error(response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
   return (

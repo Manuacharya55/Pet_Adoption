@@ -26,7 +26,7 @@ const {user} = useAdoption()
     fetchAdoptions();
   }, []);
 
-  console.log(adoptionData)
+  //console.log(adoptionData)
   // Handle status change
 
   return (
