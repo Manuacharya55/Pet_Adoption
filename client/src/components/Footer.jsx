@@ -1,8 +1,9 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <nav>
+    <nav id='footer'>
         <ul>
         <li>
           <NavLink to={"/home"}>Home</NavLink>

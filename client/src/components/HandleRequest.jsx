@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 
 const HandleRequest = async ({ method, token, url, data = null, onSuccess, onError }) => {
   try {
-    //console.log(data)
     const response = await axios({
       method,
       url: `http://localhost:5000/api/v1/${url}`,

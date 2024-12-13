@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
 import { useAdoption } from "../context/PetContext";
-const PetPage = () => {
+import { useParams } from "react-router-dom";
+const PetByCategory = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [pets, setPets] = useState([]);
+  const species = useParams()
+
   const { user } = useAdoption();
   const fetchpets = async () => {
     if (!user?.token) {
@@ -15,7 +18,7 @@ const PetPage = () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/v1/pet",
+        `http://localhost:5000/api/v1/pet?species=${species.name}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -64,4 +67,4 @@ const PetPage = () => {
   );
 }
 
-export default PetPage
+export default PetByCategory

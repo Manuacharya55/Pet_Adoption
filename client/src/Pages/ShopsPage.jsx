@@ -58,7 +58,9 @@ const ShopsPage = () => {
               />
             ))
           ) : (
-            <div>No shops available</div>
+            <div id="message">
+                <h2 id="message">No shops available</h2 >
+            </div>
           )}
         </div>
       )}

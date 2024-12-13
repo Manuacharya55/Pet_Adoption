@@ -60,6 +60,10 @@ body {
   flex-wrap: wrap;
 }
 
+#message{
+  width: 100%;
+  text-align: center;
+}
 /* form styles */
 form {
   max-width: 500px;

@@ -50,7 +50,9 @@ function WishListPage() {
               <PetCard key={pet._id} data={{ name: pet.name, id:pet._id, img: pet.imageUrl,isWishlist:true }} />
             ))
           ) : (
-            <div>No pets in your wishlist yet.</div>
+            <div id="message">
+                <h2 id="message">No pets available</h2 >
+            </div>
           )
         )}
       </div>

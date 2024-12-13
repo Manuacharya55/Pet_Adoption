@@ -3,39 +3,62 @@ import { toast } from "react-toastify";
 import { useAdoption } from "../context/PetContext";
 import { useShopKeeper } from "../context/ShopKeeperContext";
 import HandleRequest from "./HandleRequest";
+import axios from "axios";
 
 const PetCard = ({ data }) => {
   const { img, name, id, isWishlist } = data;
   const { dispatch } = useShopKeeper();
-  const { user,setPets } = useAdoption();
+  const { user, setPets } = useAdoption();
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    const response = await HandleRequest({
-      method: "delete",
-      token: user.token,
-      url: `pet/${id}`,
-      onSuccess: "Pet deleted successfully",
-      onError: "Failed to delete pet",
-    });
 
-    if (response) {
-      dispatch({ type: "REMOVE", payload: id });
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/v1/pet/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Auth-Token": user.token,
+          },
+        }
+      );
+
+      if (response.data.success) {
+        toast.success("Pet deleted successfully");
+        dispatch({ type: "REMOVE", payload: id });
+      } else {
+        toast.error("Failed to delete pet");
+      }
+    } catch (error) {
+      toast.error(error.message || "An error occurred while deleting the pet");
     }
   };
 
   const removeFromWishlist = async (e) => {
     e.preventDefault();
-    const response = await HandleRequest({
-      method: "delete",
-      token: user.token,
-      url: `auth/${id}`,
-      onSuccess: "Removed from wishlist",
-      onError: "Failed to remove from wishlist",
-    });
-    if (response) {
-      toast.success("removed from wishlist");
-      setPets((prevPets) => prevPets.filter((pet) => pet._id!== id));
+
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/v1/auth/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Auth-Token": user.token,
+          },
+        }
+      );
+
+      if (response.data.success) {
+        toast.success("Removed from wishlist");
+        setPets((prevPets) => prevPets.filter((pet) => pet._id !== id));
+      } else {
+        toast.error("Failed to remove from wishlist");
+      }
+    } catch (error) {
+      toast.error(
+        error.message || "An error occurred while removing from wishlist"
+      );
     }
   };
 

@@ -80,7 +80,9 @@ const ShopDescription = () => {
               />
             ))
           ) : (
-            <p>No pets available at the moment.</p>
+            <div id="message">
+                <h2 id="message">No pets available</h2 >
+            </div>
           )}
         </div>
       </>
