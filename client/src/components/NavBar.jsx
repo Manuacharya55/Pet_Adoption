@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import "../styles/navbar.css";
 import logo from "../assets/logo.png";
 const NavBar = () => {
-  const { isLoggedin, user } = useAdoption();
+  const { isLoggedin, user,logout } = useAdoption();
   return (
     <div className="navbar-holder">
       <nav>
@@ -53,7 +53,7 @@ const NavBar = () => {
           )}
         </ul>
 
-        {isLoggedin && <button id="logout">Log out</button>}
+        {isLoggedin && <button id="logout" onClick={logout}>Log out</button>}
       </nav>
     </div>
   );

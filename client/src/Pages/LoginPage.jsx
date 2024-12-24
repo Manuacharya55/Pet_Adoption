@@ -7,7 +7,7 @@ const LoginPage = () => {
       <div className="image-holder">
         <img src={img} alt="" />
       </div>
-      <div className="form-holder">
+      <div className="form-holder" style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
         <Login />
       </div>
     </div>

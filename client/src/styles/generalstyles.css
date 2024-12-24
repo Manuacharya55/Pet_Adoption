@@ -164,7 +164,7 @@ textarea{
 }
 
 .banner h2{
-  font-size: 80px;
+  font-size: 70px;
   text-align: center;
   color: var(--button-color);
   text-transform: capitalize;
@@ -179,7 +179,7 @@ textarea{
   height: 100%;
 
   object-fit: cover;
-  object-position: top;
+  object-position: center;
 }
 
 .banner-details{
@@ -232,6 +232,10 @@ textarea{
   overflow: hidden;
   position: relative;
   text-transform: capitalize;
+
+  opacity: 0; /* Start hidden */
+  transform: translateY(50px); /* Start from below */
+  animation: slideUp 0.8s ease-out 0.5s forwards;
 }
 
 .card img,
@@ -275,6 +279,12 @@ textarea{
   filter: blur(5px);
 }
 
+@keyframes slideUp {
+  to {
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Move to original position */
+  }
+}
 /* buttons styles */
 #wishlist,#adopt,#edit,#delete{
   padding: 10px 20px;

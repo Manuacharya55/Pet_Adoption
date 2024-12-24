@@ -8,6 +8,7 @@
 
     position: sticky;
     top: 0;
+    z-index: 100;
   }
 
   nav {
@@ -51,3 +52,6 @@
     border: none;
   }
   
+button{
+cursor:pointer;
+}

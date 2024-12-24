@@ -1,10 +1,12 @@
 // React Component for Shopkeeper Adoption Table
 import React, { useState, useEffect } from "react";
+import { InfinitySpin } from 'react-loader-spinner';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Select, MenuItem, FormControl } from "@mui/material";
 import axios from "axios";
 import {useAdoption} from "../context/PetContext"
 const AdoptionRejectedPage = () => {
   const [adoptionData, setAdoptionData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 const {user} = useAdoption()
   // Fetch data on component mount
   useEffect(() => {
@@ -18,6 +20,7 @@ const {user} = useAdoption()
   
         }); // Adjust endpoint as needed
         setAdoptionData(response.data.statusCode);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching adoption data:", error);
       }
@@ -26,14 +29,19 @@ const {user} = useAdoption()
     fetchAdoptions();
   }, []);
 
-  // Handle status change
+ if(isLoading) return ( <InfinitySpin
+            visible={true}
+            width="200"
+            color="#37B9F1"
+            ariaLabel="infinity-spin-loading"
+            />)
 
   return (
     <>
     <div className="banner">
       <h1>Adoption Rejected</h1>
     </div>
-    <div className="container" >
+    {adoptionData.length > 0 ? (<div className="container" >
       <TableContainer component={Paper}  className="custom-table">
       <Table>
         <TableHead>
@@ -58,7 +66,7 @@ const {user} = useAdoption()
         </TableBody>
       </Table>
     </TableContainer>
-    </div>
+    </div>) : "No Data Yet"}
     </>
   );
 };

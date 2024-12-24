@@ -20,18 +20,21 @@ const EditPet = () => {
   });
 
   const fetchPet = async () => {
-    const response = await HandleRequest({
-      method: "get",
-      token: user.token,
-      url: `pet/${id}`,
-      onSuccess: "",
-      onError: "Failed to delete pet",
-    });
+    try {
+        const response = await axios.get(`http://localhost:5000/api/v1/pet/${id}`, {
+            headers: {
+              "Content-Type": "application/json",
+              "Auth-Token": user.token,
+            },
+        });
 
-    if (response) {
-      setPet(response.data.data);
+        if (response && response.data) {
+            setPet(response.data.data);
+        }
+    } catch (error) {
+        console.error("Failed to fetch pet", error);
     }
-  };
+};
 
   useEffect(() => {
     fetchPet();

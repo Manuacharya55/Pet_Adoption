@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
 import { useAdoption } from "../context/PetContext";
+import { InfinitySpin } from "react-loader-spinner";
 
 const ShopsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,13 +38,22 @@ const ShopsPage = () => {
     fetchShops();
   }, []);
 
+  if (isLoading)
+    return (
+      <InfinitySpin
+        visible={true}
+        width="200"
+        color="#37B9F1"
+        ariaLabel="infinity-spin-loading"
+      />
+    );
   return (
     <>
       <div className="banner">
         <h1>Adopt Pets By Shop</h1>
       </div>
       {isLoading ? (
-"Loading"
+        "Loading"
       ) : (
         <div className="container">
           {shops.length > 0 ? (
@@ -59,7 +69,7 @@ const ShopsPage = () => {
             ))
           ) : (
             <div id="message">
-                <h2 id="message">No shops available</h2 >
+              <h2 id="message">No shops available</h2>
             </div>
           )}
         </div>

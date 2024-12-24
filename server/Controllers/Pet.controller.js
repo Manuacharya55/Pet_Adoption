@@ -7,11 +7,11 @@ import { uploadOnCloudinary } from "../Utils/Cloudinary.js";
 
 export const getAllPets = asyncHandler(async (req, res) => {
   const speciesQuery = req.query.species ? { species: req.query.species } : {};
-
   const pets = await Pet.find(speciesQuery);
 
   res.send(new ApiSuccess(200, "Data Successfully fetched", pets));
 });
+
 
 export const addPet = asyncHandler(async (req, res) => {
   const { name, age, breed, species, description, price } = req.body;

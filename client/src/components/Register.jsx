@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 const Register = () => {
@@ -9,6 +9,7 @@ const Register = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
 const handleChange =(e) =>{
 setRegister((prev)=>{
     return {...prev,[e.target.name]: e.target.value}
@@ -26,7 +27,7 @@ const handleSubmit = async(e) => {
     
       if(response.data.success){
         toast.success("Registration Successful")
-        //console.log(response.data)
+        navigate("/login");
       }else{
         toast.error(response.data.message)
       }

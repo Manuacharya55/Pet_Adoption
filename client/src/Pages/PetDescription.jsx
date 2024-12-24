@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
+import { InfinitySpin } from 'react-loader-spinner';
 import { useAdoption } from "../context/PetContext";
 import axios from "axios";
 import {toast} from "react-toastify";
@@ -9,8 +10,6 @@ const PetDescription = () => {
   const { user } = useAdoption(); // Get user context
   const [pet, setPet] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchPetDetails = async () => {
       try {
@@ -26,6 +25,7 @@ const PetDescription = () => {
         );
         if (response.data.success) {
           setPet(response.data.data);
+          setLoading(false);
         } else {
           setError("Failed to fetch pet details.");
         }
@@ -82,8 +82,12 @@ const PetDescription = () => {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if(loading) return ( <InfinitySpin
+    visible={true}
+    width="200"
+    color="#37B9F1"
+    ariaLabel="infinity-spin-loading"
+    />)
 
   return (
     <>

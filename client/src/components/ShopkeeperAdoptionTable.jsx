@@ -1,5 +1,6 @@
 // React Component for Shopkeeper Adoption Table
 import { useState, useEffect } from "react";
+import { InfinitySpin } from 'react-loader-spinner';
 import {
   Table,
   TableBody,
@@ -18,6 +19,7 @@ import HandleRequest from "./HandleRequest";
 
 const ShopkeeperAdoptionTable = () => {
   const [adoptionData, setAdoptionData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
   const { user } = useAdoption();
 
   const fetchAdoptions = async () => {
@@ -31,6 +33,7 @@ const ShopkeeperAdoptionTable = () => {
 
     if (response) {
       setAdoptionData(response.data);
+      setIsLoading(false);
     }
   };
 
@@ -54,12 +57,18 @@ const ShopkeeperAdoptionTable = () => {
     }
   };
 
+  if(isLoading) return ( <InfinitySpin
+          visible={true}
+          width="200"
+          color="#37B9F1"
+          ariaLabel="infinity-spin-loading"
+          />)
   return (
     <>
       <div className="banner">
         <h1>Adoption Requests</h1>
       </div>
-      <div className="container">
+      {adoptionData.length > 0 ? (<div className="container">
         <TableContainer component={Paper} className="custom-table">
           <Table>
             <TableHead>
@@ -101,7 +110,7 @@ const ShopkeeperAdoptionTable = () => {
             </TableBody>
           </Table>
         </TableContainer>
-      </div>
+      </div>) : "No Requests Yet"}
     </>
   );
 };

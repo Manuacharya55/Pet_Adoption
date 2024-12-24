@@ -9,7 +9,7 @@ const RegisterPage = () => {
       <div className="image-holder">
         <img src={img} alt="" />
       </div>
-      <div className="form-holder">
+      <div className="form-holder"  style={{height:"100%",display:"flex",alignItems:"center",justifyContent:"center"}}>
         <Register />
       </div>
     </div>

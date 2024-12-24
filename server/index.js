@@ -1,8 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
 import cors from "cors";
 const app = express();
-dotenv.config();
 
 import AuthRouter from "./Routers/Auth.router.js";
 import PetRouter from "./Routers/Pet.router.js";
