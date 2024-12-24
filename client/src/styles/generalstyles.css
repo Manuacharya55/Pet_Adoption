@@ -1,11 +1,10 @@
 :root {
   --background-color: #ffffff;
-  --component-color :#F2F5F5;
-  --button-color:#37B9F1;
-  --text-color:#908E9B;
+  --component-color: #f2f5f5;
+  --button-color: #37b9f1;
+  --text-color: #908e9b;
 
-
-  --max-width:1212px;
+  --max-width: 1212px;
   --banner-image: 500px;
 }
 
@@ -23,8 +22,7 @@ body,
   /* height: 100%; */
 }
 
-
-#root{
+#root {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,9 +32,8 @@ body {
   color: var(--accent-color);
 }
 
-
 /* containers style */
-.container{
+.container {
   max-width: var(--max-width);
   width: 100%;
 
@@ -47,20 +44,20 @@ body {
   padding-top: 20px;
 }
 
-.container.grid{
+.container.grid {
   display: grid;
   grid-template-columns: auto auto;
   justify-content: space-between;
 }
 
-.pet-cards{
+.pet-cards {
   width: 100%;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
 }
 
-#message{
+#message {
   width: 100%;
   text-align: center;
 }
@@ -76,7 +73,6 @@ form {
   justify-content: start;
   gap: 15px;
   text-transform: capitalize;
-
 }
 
 form .column {
@@ -139,7 +135,7 @@ option {
   color: var(--button-color);
 }
 
-textarea{
+textarea {
   width: 100%;
   height: 150px;
   padding: 10px;
@@ -149,32 +145,32 @@ textarea{
   resize: none;
 }
 /* banner and banner text styles */
-.banner{
+.banner {
   width: 100%;
   height: 150px;
   overflow: hidden;
-  overflow-x:auto;
+  overflow-x: auto;
 }
 
-.banner h1{
+.banner h1 {
   font-size: 100px;
   text-align: center;
   color: var(--button-color);
   text-transform: capitalize;
 }
 
-.banner h2{
+.banner h2 {
   font-size: 70px;
   text-align: center;
   color: var(--button-color);
   text-transform: capitalize;
 }
-.banner-image{
+.banner-image {
   width: 100%;
   height: var(--banner-image);
 }
 
-.banner-image img{
+.banner-image img {
   width: 100%;
   height: 100%;
 
@@ -182,7 +178,7 @@ textarea{
   object-position: center;
 }
 
-.banner-details{
+.banner-details {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -192,34 +188,34 @@ textarea{
   background-color: var(--component-color);
 }
 
-.banner-column{
+.banner-column {
   flex-direction: column;
   gap: 15px;
 }
-.banner-details .column{
+.banner-details .column {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
-.banner-details p{
+.banner-details p {
   font-size: 25px;
 }
-.banner-details strong{
+.banner-details strong {
   font-size: 30px;
 }
 
-.banner-details img{
+.banner-details img {
   height: 80px;
   width: 80px;
   border-radius: 50%;
 }
 
-.btn-col{
+.btn-col {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px;
 }
 /* card styles */
@@ -264,13 +260,13 @@ textarea{
 }
 
 .card a:hover {
-  color: var(--button-color)
+  color: var(--button-color);
 }
 .card:hover .details {
   transform: translateY(-90px);
 }
 
-.shop-pet-card:hover .details{
+.shop-pet-card:hover .details {
   transform: translateY(-110px);
 }
 .card:hover img,
@@ -285,44 +281,90 @@ textarea{
     transform: translateY(0); /* Move to original position */
   }
 }
+
 /* buttons styles */
-#wishlist,#adopt,#edit,#delete{
+#wishlist,
+#adopt,
+#edit,
+#delete {
   padding: 10px 20px;
   border-radius: 25px;
   border: 0px;
 }
 
-#wishlist{
+#wishlist {
   background-color: var(--button-color);
   color: white;
 }
 
-#adopt{
+#adopt {
   background-color: var(--background-color);
   color: var(--button-color);
 }
 
-#edit{
+#edit {
   background-color: var(--button-color);
   color: var(--background-color);
 }
 
-#delete{
+#delete {
   background-color: red;
   color: var(--background-color);
 }
 /* table styles */
-.custom-table th ,.custom-table td{
+.custom-table th,
+.custom-table td {
   background-color: var(--component-color);
   outline: none;
   font-family: poppins;
 }
-.custom-table th{
+.custom-table th {
   font-weight: 600;
   font-size: 15px;
- }
+}
 .custom-table .MuiSelect-select {
   background-color: var(--background-color);
   border: 1px solid var(--accent-color); /* Dropdown background */
   color: #e6e6e6; /* Dropdown text */
+}
+
+/* pet description */
+.pet-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.pet-details img {
+  height: 450px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.pet-desc {
+  width: 450px;
+  height: 450px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 8px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.detail-row .attribute {
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.detail-row .value {
+  font-size: 19px;
+  color: var(--text-color);
 }

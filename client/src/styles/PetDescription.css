@@ -1,3 +1,6 @@
+/* ============================
+   General Container Styles
+============================ */
 .pet-details {
   width: 100%;
   max-width: 1200px;
@@ -14,6 +17,9 @@
   font-size: 20px;
 }
 
+/* ============================
+   Image Section
+============================ */
 .image-holder {
   width: 100%;
   display: flex;
@@ -24,12 +30,16 @@
 
 .pet-image {
   width: 100%;
+  /* Uncomment to set max width if needed */
   /* max-width: 600px; */
   border-radius: 10px;
   object-fit: cover;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
 }
 
+/* ============================
+   Pet Description
+============================ */
 .pet-desc {
   padding-left: 20px;
   display: flex;
@@ -38,9 +48,6 @@
   color: var(--text-color);
 }
 
-strong {
-  color: var(--accent-color);
-}
 .pet-name {
   font-size: 28px;
   font-weight: bold;
@@ -49,11 +56,18 @@ strong {
 
 .pet-price {
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 800;
   color: var(--text-color);
   margin-top: 10px;
 }
 
+strong {
+  color: var(--accent-color); /* Highlighted text */
+}
+
+/* ============================
+   Shop Details
+============================ */
 .shop-details-header {
   margin: 30px;
   margin-bottom: 10px;
@@ -62,7 +76,7 @@ strong {
 }
 
 .shop-details {
-    padding: 20px;
+  padding: 20px;
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -79,9 +93,12 @@ strong {
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for the logo */
 }
 
+/* ============================
+   Button Styles
+============================ */
 .button-group {
   display: flex;
   gap: 15px;
@@ -100,21 +117,21 @@ strong {
 }
 
 #wishlist {
-  background-color: var(--accent-color);
+  background-color: var(--accent-color); /* Wishlist button color */
   color: var(--text-color);
 }
 
 #wishlist:hover {
-  background-color: var(--button-hover);
-  transform: scale(1.05);
+  background-color: var(--button-hover); /* Hover state for Wishlist */
+  transform: scale(1.05); /* Slight scale effect */
 }
 
 #adopt {
-  background-color: red;
+  background-color: red; /* Adopt button color */
   color: var(--text-color);
 }
 
 #adopt:hover {
-  background-color: var(--adopt-hover);
-  transform: scale(1.05);
+  background-color: var(--adopt-hover); /* Hover state for Adopt */
+  transform: scale(1.05); /* Slight scale effect */
 }

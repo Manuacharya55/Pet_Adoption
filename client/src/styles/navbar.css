@@ -1,57 +1,162 @@
+/* ============================
+   Navbar Styles
+============================ */
 .navbar-holder {
-    width: 100%;
-    height: 80px;
-    background-color: var(--background-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 80px;
+  background-color: var(--background-color); /* Navbar background color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky; /* Sticky navbar */
+  top: 0;
+  z-index: 100; /* Ensures navbar is above other elements */
+}
 
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+nav {
+  width: 100%;
+  max-width: var(--max-width); /* Maximum width for content */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: capitalize; /* Capitalizes text */
+  padding: 20px 0;
+}
 
-  nav {
-    width: 100%;
-    max-width: var(--max-width);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-transform: capitalize;
-    padding: 20px 0px;
-  }
-  
-  #logo{
-    height: 80px;
-  }
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-  }
-  
-  nav ul a {
-    text-decoration: none;
-    color: var(--text-color);
-  }
-  
-  nav ul a:hover {
-    color: var(--button-color);
-    transition: 0.5s ease;
-  }
-  
-  nav ul a.active {
-    color: var(--button-color);
-  }
-  
-  #logout {
-    padding: 10px 20px;
-    border-radius: 25px;
-    background-color: var(--button-color);
-    color: white;
-    border: none;
-  }
-  
-button{
-cursor:pointer;
+#logo {
+  height: 80px; /* Logo height matches navbar height */
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px; /* Spacing between nav items */
+}
+
+nav ul a {
+  text-decoration: none; /* Removes underline from links */
+  color: var(--text-color); /* Default text color */
+  position: relative;
+}
+
+nav ul a::before {
+  content: ''; /* Decorative underline effect */
+  position: absolute;
+  height: 3px;
+  bottom: -5px;
+  border-radius: 50px; /* Rounded underline */
+  background-color: var(--button-color);
+  transition: width 0.5s ease; /* Smooth width transition */
+  width: 0;
+  left: 0;
+}
+
+nav ul a:hover {
+  color: var(--button-color); /* Changes text color on hover */
+  transition: 0.5s ease; /* Smooth color transition */
+}
+
+nav ul a:hover::before {
+  width: 100%; /* Expands underline on hover */
+}
+
+nav ul a.active {
+  color: var(--button-color); /* Highlights active link */
+}
+
+#logout {
+  padding: 10px 20px;
+  border-radius: 25px; /* Rounded logout button */
+  background-color: var(--button-color); /* Button background color */
+  color: white;
+  border: none;
+}
+
+button {
+  cursor: pointer; /* Pointer cursor for buttons */
+}
+
+/* ============================
+   Footer Styles
+============================ */
+.footer {
+  margin-top: 20px;
+  width: 100%;
+  padding: 20px 0;
+  background-color: var(--component-color); /* Matches the component background */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 0 40px;
+  width: 100%;
+}
+
+/* Footer Sections */
+.footer-section {
+  flex: 1;
+  margin: 10px;
+  min-width: 250px; /* Ensures responsiveness */
+}
+
+.footer-section h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: var(--button-color); /* Highlighted color for headings */
+}
+
+.footer-section p,
+.footer-section ul {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-color); /* Default text color */
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px; /* Spacing between list items */
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  color: var(--text-color); /* Link matches text color */
+  transition: color 0.3s; /* Smooth transition for hover */
+}
+
+.footer-section ul li a:hover {
+  color: var(--button-color); /* Link hover effect */
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 10px; /* Spacing between social icons */
+}
+
+.social-icons a {
+  text-decoration: none;
+  color: var(--text-color); /* Icon matches text color */
+  font-size: 20px; /* Icon size */
+  transition: color 0.3s; /* Smooth transition for hover */
+}
+
+.social-icons a:hover {
+  color: var(--button-color); /* Icon hover effect */
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  border-top: 1px solid var(--text-color); /* Subtle border with text color */
+  padding-top: 10px;
+  color: var(--text-color); /* Bottom text color */
 }
