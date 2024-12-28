@@ -12,6 +12,7 @@ export const AdoptionProvider = ({ children }) => {
   );
 
   const [pets, setPets] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
 
   const setUserToken = (token, role) => {
     localStorage.setItem("token", token);
@@ -35,7 +36,7 @@ export const AdoptionProvider = ({ children }) => {
   },[])
   return (
     <AdoptionContext.Provider
-      value={{ user, setUserToken, isLoggedin, logout,pets, setPets }}
+      value={{ user, setUserToken, isLoggedin, logout,pets, setPets,wishlist, setWishlist }}
     >
       {children}
     </AdoptionContext.Provider>

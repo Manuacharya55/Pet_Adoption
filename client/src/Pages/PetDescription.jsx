@@ -53,6 +53,7 @@ const PetDescription = () => {
       );
       if (response.data.success) {
         toast.success("Pet added to wishlist successfully!");
+        console.log(response.data)
       } else {
         toast.error(response.data.message);
       }

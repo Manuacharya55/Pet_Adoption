@@ -86,7 +86,7 @@ const ShopkeeperAdoptionTable = () => {
                 <TableRow key={adoption._id}>
                   <TableCell>{adoption.userId.name}</TableCell>
                   <TableCell>{adoption.userId.email}</TableCell>
-                  <TableCell>{adoption.petId.name}</TableCell>
+                  <TableCell>"{adoption.petId.name}"</TableCell>
                   <TableCell>{adoption.petId.breed}</TableCell>
                   <TableCell>
                     <FormControl>

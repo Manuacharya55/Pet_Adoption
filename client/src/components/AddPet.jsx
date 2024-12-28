@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAdoption } from "../context/PetContext";
 import { toast } from "react-toastify";
 import axios from "axios";

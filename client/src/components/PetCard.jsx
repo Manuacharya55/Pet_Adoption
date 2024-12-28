@@ -8,7 +8,7 @@ import axios from "axios";
 const PetCard = ({ data }) => {
   const { img, name, id, isWishlist } = data;
   const { dispatch } = useShopKeeper();
-  const { user, setPets } = useAdoption();
+  const { user, setWishlist  } = useAdoption();
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -51,7 +51,7 @@ const PetCard = ({ data }) => {
 
       if (response.data.success) {
         toast.success("Removed from wishlist");
-        setPets((prevPets) => prevPets.filter((pet) => pet._id !== id));
+        setWishlist ((prevPets) => prevPets.filter((pet) => pet._id !== id));
       } else {
         toast.error("Failed to remove from wishlist");
       }

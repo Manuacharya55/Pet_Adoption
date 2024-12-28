@@ -5,7 +5,8 @@ import axios from 'axios';
 
 function WishListPage() {
   const [isLoading, setIsLoading] = useState(true);
-  const { user,pets, setPets } = useAdoption();
+  
+  const { user,wishlist, setWishlist } = useAdoption();
   const fetchpets = async () => {
     if (!user?.token) {
       console.error("User token is missing");
@@ -15,7 +16,7 @@ function WishListPage() {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/v1/pet?limit=15&page=1",
+        "http://localhost:5000/api/v1/auth/profile",
         {
           headers: {
             "Content-Type": "application/json",
@@ -24,8 +25,9 @@ function WishListPage() {
         }
       );
       if (response.data.success) {
-        setPets(response.data.data || []);
+        setWishlist(response.data.data.wishlist);
         setIsLoading(false);
+        console.log(response.data.data.wishlist)
       }
 
     } catch (error) {
@@ -45,8 +47,8 @@ function WishListPage() {
         {isLoading ? (
           <p>Loading...</p> // More descriptive loading message
         ) : (
-          pets.length > 0 ? (
-            pets.map((pet) => (
+          wishlist.length > 0 ? (
+            wishlist.map((pet) => (
               <PetCard key={pet._id} data={{ name: pet.name, id:pet._id, img: pet.imageUrl,isWishlist:true }} />
             ))
           ) : (

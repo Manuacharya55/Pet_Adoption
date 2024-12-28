@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import Card from "../components/Card"
 import { Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import "../styles/generalstyles.css"
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -76,14 +76,14 @@ const HomePage = () => {
   }, []);
   return (
     <>
-      <div className="banner" style={{ overflow: "hidden", whiteSpace: "nowrap",height:"180px" }}>
+      <div className="banner" >
         <h1 ref={textRef} style={{ display: "inline-block" }}>
           Find your furry best friend at Happy Paws!
         </h1>
       </div>
       <div className="banner-image" style={{objectPosition:"bottom"}}>
         <img
-          src="https://img.freepik.com/premium-photo/white-dog-wearing-glasses_564714-26135.jpg?uid=R95440870&ga=GA1.1.1474846998.1733319499&semt=ais_hybrid"
+          src="https://img.freepik.com/premium-photo/white-dog-wearing-glasses_564714-26135.jpg?w=1060"
           alt=""
         />
       </div>
