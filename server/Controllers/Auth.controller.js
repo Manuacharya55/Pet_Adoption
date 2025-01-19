@@ -40,7 +40,7 @@ export const login = asyncHandler(async (req, res) => {
 });
 
 export const profile = asyncHandler(async (req, res) => {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id).populate("wishlist");
     if(!user) {
         throw new ApiError(404,"User not found");
     }

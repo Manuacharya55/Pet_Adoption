@@ -35,7 +35,7 @@ const sendEmail = async (shopname,recipient, subject, text) => {
 export const getAllAdoption = asyncHandler(async (req, res) => {
   const shopId = req.shop._id;
 
-  const adoptions = await Adoption.find({ status: "pending" })
+  const adoptions = await Adoption.find({ status: "pending",shopId: shopId})
     .populate({
       path: "userId",
       select: "name email",
@@ -43,9 +43,7 @@ export const getAllAdoption = asyncHandler(async (req, res) => {
     .populate({
       path: "petId",
       select: "name breed image",
-      match: { shopId },
     });
-
   res.status(200).json(new ApiSuccess(200, "Successfully fetched",adoptions));
 });
 
