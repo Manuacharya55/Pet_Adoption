@@ -57,7 +57,7 @@ export const addShop = asyncHandler(async (req, res) => {
 export const getSingleShop = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const shop = await Shop.findById(id);
-  const pets = await Pet.find({ shopId: shop._id });
+  const pets = await Pet.find({ shopId: shop._id, isAdopted: false });
   if (!shop) {
     throw new ApiError(404, "Shop not found");
   }

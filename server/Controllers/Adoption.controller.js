@@ -57,6 +57,8 @@ export const addAdoption = asyncHandler(async (req, res) => {
     res.send( new ApiError("Pet not found", 404))
   }
 
+  pet.isAdopted = true;
+  await pet.save();
   const newAdoption = await Adoption.create({
     userId,
     petId,
