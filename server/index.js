@@ -9,6 +9,7 @@ import PetRouter from "./Routers/Pet.router.js";
 import ShopRouter from "./Routers/Shop.router.js";
 import AdoptionRouter from "./Routers/Adoption.router.js";
 import connectDB from "./Database/index.js";
+import { uploadOnCloudinary } from "./Utils/Cloudinary.js";
 
 app.use(express.json());
 app.use(cors());

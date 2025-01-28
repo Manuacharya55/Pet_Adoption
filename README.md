@@ -68,21 +68,25 @@ API_KEY=your_cloudinary_api_key
 API_SECRET=your_cloudinary_api_secret
 NODEMAILER_USER=your_email_user
 NODEMAILER_PASSWORD=your_email_password
+```
 
 ## Backend Setup
 
 1. **Navigate to the `server` directory:**
    ```bash
    cd server
+   ```
 2. **Install all dependencies:**
    ```bash
    npm i 
+   ```
 3. **To run server:**
    ```bash
-   cd server
    node index.js
+   ```
 4. **To run client:**
    ```bash
    cd client
    npm run dev
+   ```
 
