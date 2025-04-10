@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom';
 const BecomeShopkeeper = () => {
   const {user} = useAdoption()
   return  user.role === "shopkeeper"? <Navigate to="/mypets"/> :(
-    <div className="auth-page">
+    <div className="request-page">
       <div className="image-holder">
         <img src={img} alt="" />
       </div>

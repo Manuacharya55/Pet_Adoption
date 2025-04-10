@@ -46,7 +46,7 @@ const PetPage = () => {
   return (
     <>
       <div className="banner">
-        <h1>Adopt Pets By Shop</h1>
+        <h1>Adopt Pets By Category</h1>
       </div>
       {isLoading ? (
         <InfinitySpin

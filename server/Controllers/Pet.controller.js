@@ -12,11 +12,10 @@ export const getAllPets = asyncHandler(async (req, res) => {
   res.send(new ApiSuccess(200, "Data Successfully fetched", pets));
 });
 
-
 export const addPet = asyncHandler(async (req, res) => {
   const { name, age, breed, species, description, price } = req.body;
   const imageLocalPath = req.file?.path;
-  
+
   const { _id } = req.shop;
   if (!name || !age || !breed || !species || !description || !price) {
     throw new ApiError(400, "All fields are required");

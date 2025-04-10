@@ -27,6 +27,7 @@ export const login = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Required fields are empty");
   }
   const user = await User.findOne({ email });
+  console.log(user)
   if (!user) {
     throw new ApiError(400, "User not found");
   }
