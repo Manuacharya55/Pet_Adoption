@@ -18,6 +18,10 @@ const PetSchema = new Schema(
       type: String,
       required: true,
     },
+    gender:{
+      type:String,
+      enum:["male","female"]
+    },
     species: {
       type: String,
       enum: [

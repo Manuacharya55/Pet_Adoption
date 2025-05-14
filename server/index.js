@@ -8,6 +8,7 @@ import AuthRouter from "./Routers/Auth.router.js";
 import PetRouter from "./Routers/Pet.router.js";
 import ShopRouter from "./Routers/Shop.router.js";
 import AdoptionRouter from "./Routers/Adoption.router.js";
+import PaymentRouter from "./Routers/Payment.router.js";
 import connectDB from "./Database/index.js";
 import { uploadOnCloudinary } from "./Utils/Cloudinary.js";
 
@@ -28,3 +29,4 @@ app.use("/api/v1/auth", AuthRouter);
 app.use("/api/v1/pet", PetRouter);
 app.use("/api/v1/shop", ShopRouter);
 app.use("/api/v1/adopt", AdoptionRouter);
+app.use("/api/v1/payment", PaymentRouter);

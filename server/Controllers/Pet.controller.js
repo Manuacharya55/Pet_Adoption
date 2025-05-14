@@ -6,18 +6,23 @@ import { asyncHandler } from "../Utils/AsyncHandler.js";
 import { uploadOnCloudinary } from "../Utils/Cloudinary.js";
 
 export const getAllPets = asyncHandler(async (req, res) => {
-  const speciesQuery = req.query.species ? { species: req.query.species } : {};
-  const pets = await Pet.find(speciesQuery);
+  const filter = {
+    ...(req.query.species && { species: req.query.species }),
+    ...(req.query.gender && { gender: req.query.gender }),
+    isAdopted: false
+  };
+
+  const pets = await Pet.find(filter)
 
   res.send(new ApiSuccess(200, "Data Successfully fetched", pets));
 });
 
 export const addPet = asyncHandler(async (req, res) => {
-  const { name, age, breed, species, description, price } = req.body;
+  const { name, age, breed, species, description, price ,gender} = req.body;
   const imageLocalPath = req.file?.path;
 
   const { _id } = req.shop;
-  if (!name || !age || !breed || !species || !description || !price) {
+  if (!name || !age || !breed || !species || !description || !price || !gender) {
     throw new ApiError(400, "All fields are required");
   }
 
@@ -41,6 +46,7 @@ export const addPet = asyncHandler(async (req, res) => {
     age,
     breed,
     species,
+    gender,
     description,
     price,
     shopId: _id,

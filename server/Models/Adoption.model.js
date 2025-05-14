@@ -19,6 +19,11 @@ const AdoptionSchema = new Schema(
       enum: ["pending", "approved", "rejected"],
       default: "pending",
     },
+    payment:{
+      type:String,
+      enum :["pending","sucessfull"],
+      default: "pending",
+    }
   },
   {
     timestamps: true

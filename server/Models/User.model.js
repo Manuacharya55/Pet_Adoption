@@ -25,7 +25,7 @@ const UserSchema = new Schema(
     wishlist:[{
       type: Schema.Types.ObjectId,
       ref: "Pet"
-    }]
+    }],
   },
   {
     timestamps: true,
