@@ -15,6 +15,8 @@ import AdoptionApprovedPage from "./Pages/AdoptionApprovedPage";
 import AdoptionRejectedPage from "./Pages/AdoptionRejectedPage";
 import ProtectedLayout from "./components/ProtectedLayout";
 import EditPage from "./Pages/EditPage";
+
+import CheckOutPage from "./Pages/CheckOutPage";
 // import PetByCategory from "./Pages/PetByCategory";
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
             <Route path="/shops/:id" element={<ShopDescription />} />
             <Route path="/pets" element={<PetPage />} />
             <Route path="/pets/:id" element={<PetDescription />} />
+            <Route path="/payment/:id" element={<CheckOutPage />} />
             {/* <Route path="/pet/:name" element={<PetByCategory />} /> */}
             <Route path="/wishlist" element={<WishListPage />} />
             <Route path="/shopkeeper" element={<BecomeShopkeeper />} />

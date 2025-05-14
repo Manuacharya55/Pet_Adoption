@@ -3,11 +3,11 @@ import img from "../assets/three.jpg";
 import EditPet from '../components/EditPet';
 const EditPage = () => {
   return (
-    <div className="auth-page">
+    <div className="page">
       <div className="image-holder">
         <img src={img} alt="" />
       </div>
-      <div className="form-holder">
+      <div className="container-holder">
         <EditPet/>
       </div>
     </div>

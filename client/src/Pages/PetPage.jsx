@@ -11,6 +11,7 @@ const PetPage = () => {
 
   const [searchParams] = useSearchParams();
   const [species,setSpecies] = useState(searchParams.get("species") || "");
+  const [gender,setGender] = useState("");
 
   const fetchpets = async () => {
     if (!user?.token) {
@@ -21,7 +22,7 @@ const PetPage = () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/pet?species=${species}`,
+        `http://localhost:5000/api/v1/pet?species=${species}&gender=${gender}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -39,7 +40,7 @@ const PetPage = () => {
   };
   useEffect(() => {
     fetchpets();
-  }, [species]);
+  }, [species,gender]);
 
 
   // if(isLoading) return "loading..."
@@ -77,6 +78,20 @@ const PetPage = () => {
               <option value="turtle">Turtle</option>
               <option value="tortoise">Tortoise</option>
               <option value="fish">Fish</option>
+            </select>
+
+            <select
+              name="species"
+              id=""
+              onChange={(e) => {
+                setIsLoading(true)
+               setGender(e.target.value);
+              }}
+              value={gender}
+            >
+              <option value="">All</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
             </select>
           </div>
           <div className="container">

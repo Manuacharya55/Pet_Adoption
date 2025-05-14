@@ -30,6 +30,7 @@ const AdoptionApprovedPage = () => {
         ); // Adjust endpoint as needed
         setAdoptionData(response.data.statusCode);
         setIsLoading(false);
+        console.log(response)
       } catch (error) {
         console.error("Error fetching adoption data:", error);
       }
@@ -59,6 +60,7 @@ const AdoptionApprovedPage = () => {
                 <TableCell>User Email</TableCell>
                 <TableCell>Pet Name</TableCell>
                 <TableCell>Breed</TableCell>
+                <TableCell>Payment Status</TableCell>
                 <TableCell>Created At</TableCell>
               </TableRow>
             </TableHead>
@@ -69,6 +71,7 @@ const AdoptionApprovedPage = () => {
                   <TableCell>{adoption.userId.email}</TableCell>
                   <TableCell>{adoption.petId.name}</TableCell>
                   <TableCell>{adoption.petId.breed}</TableCell>
+                  <TableCell>{adoption.payment}</TableCell>
                   <TableCell>
                     {new Date(adoption.createdAt).toLocaleString()}
                   </TableCell>
@@ -77,7 +80,7 @@ const AdoptionApprovedPage = () => {
             </TableBody>
           </Table>
         </TableContainer>
-      </div>): "No Data Yet"}
+      </div>) : "No Data Yet"}
     </>
   );
 };

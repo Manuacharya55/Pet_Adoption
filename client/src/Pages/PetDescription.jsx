@@ -118,6 +118,10 @@ const PetDescription = () => {
                 <p className="value">{pet.age}</p>
               </div>
               <div className="detail-row">
+                <h1 className="attribute">Gender : </h1>
+                <p className="value">{pet.gender}</p>
+              </div>
+              <div className="detail-row">
                 <h1 className="attribute">Description : </h1>
                 <p className="value">{pet.description}</p>
               </div>

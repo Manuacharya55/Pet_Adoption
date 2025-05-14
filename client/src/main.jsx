@@ -6,7 +6,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ShopKeeperProvider } from "./context/ShopKeeperContext.jsx";
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
     <AdoptionProvider>
       <ShopKeeperProvider>
         <App />
@@ -26,5 +25,4 @@ createRoot(document.getElementById("root")).render(
         <ToastContainer />
       </ShopKeeperProvider>
     </AdoptionProvider>
-  </StrictMode>
 );

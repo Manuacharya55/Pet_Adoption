@@ -12,6 +12,7 @@ const AddPet = () => {
     name: "",
     species: "",
     breed: "",
+    gender:"",
     age: 0,
     description: "",
     imageUrl: "",
@@ -35,6 +36,7 @@ const AddPet = () => {
       autoClose: false,
       toastId: "uploadToast",
     });
+    console.log(pet)
     try {
       const response = await axios.post(
         "http://localhost:5000/api/v1/pet/",
@@ -124,6 +126,13 @@ const AddPet = () => {
           onChange={handleImageChange}
         />
       </div>
+      <input
+          type="text"
+          placeholder="enter pet gender"
+          name="gender"
+          value={pet.gender}
+          onChange={handleChange}
+        />
       <button type="submit">Add Pet</button>
     </form>
   );

@@ -1,0 +1,5 @@
+_id,name,email,password,role,createdAt,updatedAt,__v,wishlist[0]
+680a1c1ac8af26a9df5cb55e,Fury Friends Haven,furyfriendshaven@gmail.com,$2b$10$uJVfJ14xsZ54k7F3jBOEj.5e.VohCE0OjcZZ98CvQ3rOP5yv/BAxy,shopkeeper,2025-04-24T11:10:18.760Z,2025-04-24T11:12:51.258Z,0,
+680a1fc9c8af26a9df5cb59c,Paw Palace,pawpalace@gmail.com,$2b$10$2uncRE.YxH4S2Kavc0nFPONqtoGwxMx2Vv1xTNOSxUAIKx/oenl22,shopkeeper,2025-04-24T11:26:01.073Z,2025-04-24T11:28:00.394Z,0,
+680a237dc8af26a9df5cb5c9,Happy Tails,happytails@gmail.com,$2b$10$QZc.9dlTCn.VvaC8oe075.MdLlPXH6HpFO1tPGyM.w9QtZrM7T63O,shopkeeper,2025-04-24T11:41:49.616Z,2025-04-24T11:43:08.840Z,0,
+680b51d814bcc2d2db610b29,user,user@gmail.com,$2b$10$HgScfpyo3ElrELvu.604F./i81A/meUS87ytIr8IF40AzqfUvidEy,user,2025-04-25T09:11:52.480Z,2025-04-25T09:12:53.449Z,1,680a1f4dc8af26a9df5cb58c

@@ -1,0 +1,4 @@
+_id,name,ownerId,location,contactInfo,imageUrl,createdAt,updatedAt,__v
+680a1cb3c8af26a9df5cb562,Fury Friends Haven,680a1c1ac8af26a9df5cb55e,Bangalore,9876543210,http://res.cloudinary.com/dhzqduxto/image/upload/v1745493170/jioubjchetsuruscpjmp.jpg,2025-04-24T11:12:51.255Z,2025-04-24T11:12:51.255Z,0
+680a2040c8af26a9df5cb5a0,Paw Palace,680a1fc9c8af26a9df5cb59c,Mumbai,6360890742,http://res.cloudinary.com/dhzqduxto/image/upload/v1745494079/ehy18tbdxcrjjiou7epj.jpg,2025-04-24T11:28:00.390Z,2025-04-24T11:28:00.390Z,0
+680a23ccc8af26a9df5cb5cd,Happy Tails,680a237dc8af26a9df5cb5c9,Delhi,8899776655,http://res.cloudinary.com/dhzqduxto/image/upload/v1745494988/fpulp6cimfelx8x775tw.png,2025-04-24T11:43:08.838Z,2025-04-24T11:43:08.838Z,0

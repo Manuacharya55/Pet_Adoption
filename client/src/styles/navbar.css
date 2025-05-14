@@ -80,10 +80,11 @@ button {
    Footer Styles
 ============================ */
 .footer {
-  margin-top: 20px;
+  margin-top: 50px;
   width: 100%;
   padding: 20px 0;
   background-color: var(--component-color); /* Matches the component background */
+  text-align: center;
 }
 
 .footer-container {
